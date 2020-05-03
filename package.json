@@ -1,0 +1,16 @@
+{
+  "name": "chikyudo-renewal",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "contentful": "^7.14.4",
+    "next": "9.3.6",
+    "react": "16.13.1",
+    "react-dom": "16.13.1"
+  }
+}
