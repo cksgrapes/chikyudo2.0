@@ -1,28 +1,20 @@
-import { useEffect, useState } from 'react'
-import Layout from '../../components/Layout'
-import Post from '../../components/Post'
-import { fetchEntries } from '../../components/functions/fetchEntries';
+import Layout from '~/components/Layout'
+import BlogTemplate from '~/components/BlogTemplate'
+import { fetchEntries } from '~/components/general/fetchEntries';
 
 const meta = {
-  title: 'ブログ記事 - 千柩堂',
+  title: 'Blog - 千柩堂',
   description: 'ですくりぷしょん'
 };
 
-const BlogTemplate = (post) => {
-  const {sys, fields} = post;
-
+const SingleBlog = (post) => {
   return(
       <Layout meta={meta}>
-      <Post
-          heading="Blog"
-          description="記事詳細"
-      >
-          <p>{ fields.title }</p>
-          <p>詳細記事テスト。</p>
-      </Post>
+        <BlogTemplate post={post} />
       </Layout>
   )
 }
+
 export async function getStaticPaths() {
   const blogPosts = await fetchEntries({
     content_type: 'blog'
@@ -41,4 +33,4 @@ export async function getStaticProps({params}) {
   return { props: post[0] };
 }
 
-export default BlogTemplate
+export default SingleBlog

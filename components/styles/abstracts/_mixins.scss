@@ -1,0 +1,103 @@
+@use 'variables' as var;
+
+// ========================================
+// clearfix
+// ========================================
+
+@mixin clearfix {
+  &:after {
+      content:" ";
+      display:block;
+      clear:both;
+  }
+}
+
+
+// ========================================
+// Text Hover
+// ========================================
+
+@mixin hoverAction($name) {
+  @if $name == 'bar' {
+    position: relative;
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: var.$color-txt-gray;
+      transition: width .4s ease;
+    }
+    &:hover::before {
+      width: 100%;
+    }
+  }
+}
+
+@mixin textHover {
+  transition: opacity .2s ease-out;
+  &:hover {
+    opacity: .5;
+  }
+}
+
+@mixin textHover2 {
+  transition: color .2s ease-out;
+  &:hover {
+    color: var.$color-main;
+  }
+}
+
+@mixin placeholder {
+  &:placeholder-shown {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+  &:-moz-placeholder {
+    opacity: 1;
+    @content;
+  }
+  &::-moz-placeholder {
+    opacity: 1;
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+}
+
+// ========================================
+// Media Query
+// ========================================
+
+$breakpoint-min: (
+  'sm': 'print, screen and (min-width: 568px)',
+  'md': 'print, screen and (min-width: 768px)',
+  'lg': 'print, screen and (min-width: 1024px)',
+  'xl': 'print, screen and (min-width: 1200px)',
+);
+
+// max-width
+$breakpoint-max: (
+  'sm': 'print, screen and (max-width: 567px)',
+  'md': 'print, screen and (max-width: 767px)',
+  'lg': 'print, screen and (max-width: 1023px)',
+  'xl': 'print, screen and (max-width: 1199px)',
+);
+
+@mixin media($breakpoint: md) {
+  @media #{map-get($breakpoint-min, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin mediaMax($breakpoint: md) {
+  @media #{map-get($breakpoint-max, $breakpoint)} {
+    @content;
+  }
+}

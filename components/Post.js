@@ -1,30 +1,37 @@
+import dayjs from 'dayjs';
+import classNames from 'classnames'
+import styles from '~/components/styles/modules/layouts/Post.module.scss'
+import generalStyles from '~/components/styles/modules/layouts/General.module.scss'
+import Tags from '~/components/elements/Tags'
+
+const getFormattedDate = (date) => {
+  return dayjs(date).format('YYYY.M.D ddd HH:mm')
+}
+
 class Post extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+  constructor(props) {
+    super(props)
+  }
 
-    render() {
-        const { children, heading, description } = this.props;
+  render() {
+    const { children, heading, publishedDate, tags } = this.props
 
-        return(
-            <div className="post">
-                <div className="categoryHeading pageHeading">
-                    <h1 className="post_heading">{ heading }</h1>
-                    <p className="post_description">{ description }</p>
-                </div>
-                <div className="post commonSection">
-                    <div className="post_body wysiwyg">
-                        { children }
-                    </div>
-                </div>
-            </div>
-        )
-    }
+    return (
+      <section className={classNames(styles.post, generalStyles.commonSection)}>
+        <h2 className={styles.post_heading}>{heading}</h2>
+        <div className={styles.post_data}>
+          { Tags(tags, [styles.post_tags]) }
+          <p className={styles.post_date}>{getFormattedDate(publishedDate)}</p>
+        </div>
+        <div className={styles.post_body}>{children}</div>
+      </section>
+    )
+  }
 }
 
 Post.defaultProps = {
-    heading: 'Heading',
-    description: '見出し'
-};
+  heading: '記事タイトル',
+  publishedDate: '0000.00.0.00 Thu 00:00'
+}
 
-export default Post;
+export default Post

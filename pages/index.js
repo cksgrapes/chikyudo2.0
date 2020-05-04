@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import Layout from '../components/Layout'
+import Layout from '~/components/Layout'
 import Link from 'next/link';
-import ExLink from '../components/elements/ExLink';
-import { fetchEntries } from '../components/functions/fetchEntries';
+import ExLink from '~/components/elements/ExLink';
+import { fetchEntries } from '~/components/general/fetchEntries';
 
 const getWorkItems = () => {
   return [

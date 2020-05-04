@@ -1,21 +1,22 @@
-import { useEffect, useState } from 'react'
-import Layout from '../components/Layout'
-import Post from '../components/Post'
-import Link from 'next/link';
-import { fetchEntries } from '../components/functions/fetchEntries';
+import Layout from '~/components/Layout'
+import BlogTemplate from '~/components/BlogTemplate'
+import CategoryHeading from '~/components/elements/CategoryHeading'
+import { fetchEntries } from '~/components/general/fetchEntries';
 
 const meta = {
-  title: 'ブログ記事 - 千柩堂',
+  title: 'Blog - 千柩堂',
   description: 'ですくりぷしょん'
 };
 
 const Blog = ( {posts} ) => {
   return(
-    <ul>
-    {posts.map(post => (
-      <li key={post.fields.slug}><Link href={`/blog/${post.fields.slug}`}><a>{post.fields.title}</a></Link></li>
-    ))}
-  </ul>
+    <Layout meta={meta}>
+      <CategoryHeading
+        name="Blog"
+        description="日々つれづれよもやまばなし"
+      />
+      {posts.map(post => (<BlogTemplate key={post.fields.slug} post={post} />))}
+    </Layout>
   )
 }
 

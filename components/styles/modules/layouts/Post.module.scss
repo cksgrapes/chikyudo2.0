@@ -1,0 +1,406 @@
+@use '../../abstracts/variables' as var;
+@use '../../abstracts/mixins';
+
+// ========================================
+// Post
+// ========================================
+
+.post {
+    @include mixins.media() {
+      max-width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  .post_slider {
+    margin-left: -2em;
+    margin-right: -2em;
+    text-align: center;
+    //img {
+    //  width: 100%;
+    //  //max-width: 500px;
+    //  height: auto;
+    //}
+    @include mixins.media() {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  .post_data {
+    position: relative;
+    margin-top: 2em;
+    padding-left: 1.5em;
+    border-left: 1px solid #eee;
+    font-family: var.$font-gothic;
+    letter-spacing: .15em;
+  }
+
+  .post_date {
+    font-size: 1.1rem;
+  }
+
+  .post_heading {
+    .post > &,
+    .post_bodyWrap > & {
+      font-size: 3.6rem;
+      line-height: 1.5;
+      @include mixins.media() {
+        font-size: 5rem;
+      }
+    }
+    .post_data & {
+      margin-top: .2em;
+      margin-bottom: .2em;
+      font-size: 1.8rem;
+      line-height: 1.5;
+    }
+    i {
+      margin-left: 6px;
+    }
+    @include mixins.media() {
+      a {
+        transition: opacity .2s ease-out;
+        &:hover {
+          opacity: .5;
+        }
+      }
+      .post_data & {
+        font-size: 2.4rem;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  .post_subHeading {
+    margin-bottom: 3em;
+    font-size: 1.6rem;
+    font-family: var.$font-ten-mincho;
+    @include mixins.media() {
+      font-size: 2rem;
+    }
+  }
+
+  .post_tags {
+    justify-content: flex-start;
+    font-family: var.$font-gothic;
+  }
+
+  .post_summary {
+    font-size: 1.2rem;
+    color: var.$color-txt-gray;
+    line-height: 1.8;
+    letter-spacing: .1em;
+    @include mixins.media() {
+      font-size: 1.3rem;
+    }
+  }
+
+  .post_shareButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.1rem;
+    font-family: var.$font-ten-mincho;
+    letter-spacing: .15em;
+    color: var.$color-txt-gray;
+    a {
+      color: inherit;
+    }
+    i {
+      font-size: 12px;
+      vertical-align: -1px;
+      margin-right: .5em;
+    }
+  }
+
+  .post_bookCredit {
+    margin-top: -.5em;
+    margin-bottom: 1em;
+    font-size: 1.3rem;
+    @include mixins.media() {
+      font-size: 1.5rem;
+      margin-bottom: 2em;
+    }
+  }
+
+  .post_body {
+    h2 {
+      margin-top: 2em;
+      font-size: 2.8rem;
+      color: var.$color-txt-gray;
+      font-family: var.$font-ten-mincho;
+    }
+    h3 {
+      margin-top: 3em;
+      margin-bottom: 1em;
+      font-weight: bold;
+    }
+    p {
+      margin-top: 2em;
+      margin-bottom: 2em;
+    }
+    pre {
+      font-family: var.$font-ten-mincho;
+    }
+    a {
+      padding-bottom: 2px;
+      border-bottom: 1px solid #ddd;
+    }
+    li {
+      text-indent: -1.2em;
+      margin-left: 1.2em;
+      &::before {
+        width: 1.2em;
+        content: '・';
+      }
+    }
+    blockquote {
+      margin: 1em 0;
+      padding: 1em;
+      font-style: italic;
+      font-size: 2rem;
+      font-family: var.$font-ten-mincho;
+      line-height: 1.6;
+      letter-spacing: .1em;
+      color: var.$color-txt-gray;
+      p {
+        margin: 0;
+      }
+    }
+    label {
+      font-size: 1.3rem;
+      color: var.$color-txt-gray;
+    }
+    input[type="text"], input[type="email"], textarea {
+      width: 100%;
+      max-height: 8em;
+      padding: .5em;
+      border: none;
+      border-bottom: 1px solid #eee;
+      line-height: 1.6;
+      font-size: 1.3rem;
+      color: var.$color-black;
+      resize: none;
+      &:focus {
+        font-size: 1.6rem;
+      }
+    }
+    .post_data + & {
+      margin-top: 2em;
+    }
+    .post_heading + & {
+      margin-top: 1em;
+      margin-bottom: 2em;
+    }
+    .wp-block-image {
+      margin: 2em -2em;
+      max-width: none;
+      figcaption {
+        display: block;
+        line-height: 1.4;
+        margin: 1em 2em;
+        font-size: 1.1rem;
+        color: var.$color-txt-gray;
+      }
+    }
+    .wp-block-table {
+      width: 100vw;
+      margin: 2em -2em;
+      border-collapse: collapse;
+      th, td {
+        padding: 1em;
+        font-size: 1.3rem;
+        font-weight: normal;
+      }
+      th {
+        font-family: var.$font-ten-mincho;
+        font-size: 1.1rem;
+        color: #999999;
+      }
+      tbody {
+        border-top: 1px solid #eee;
+        th, td {
+          border-bottom: 1px solid #eee;
+        }
+      }
+    }
+    .simpleTable {
+      display: block;
+      padding: 1.5em 2em;
+      background-color: #fafafa;
+      tbody, tr, th, td {
+        display: block;
+      }
+      th, td {
+        padding: 0;
+        display: inline;
+        color: var.$color-black;
+      }
+      th {
+        font-family: var.$font-ten-mincho;
+        font-size: 1.1rem;
+        &::before {
+          content: '［';
+        }
+        &::after {
+          content: '］';
+        }
+      }
+      tbody {
+        border-top: none;
+        th, td {
+          border-bottom: none;
+        }
+      }
+    }
+    .uagb-google-map__wrap {
+      margin: 2em -2em;
+      padding: 1em;
+      background: #fafafa;
+    }
+    > *:first-child {
+      margin-top: 0;
+    }
+    > *:last-child {
+      margin-bottom: 0;
+    }
+    @include mixins.media() {
+      h2 {
+        margin-top: 2.5em;
+        font-size: 3.2rem;
+      }
+      blockquote {
+        font-size: 2.4rem;
+        line-height: 1.6;
+      }
+      label {
+        font-size: 1.4rem;
+        color: var.$color-txt-gray;
+      }
+      input[type="text"], input[type="email"], textarea {
+        width: 100%;
+        max-height: 8em;
+        padding: 1em;
+        border: none;
+        border-bottom: 1px solid #eee;
+        line-height: 1.6;
+        font-size: 1.6rem;
+        color: var.$color-black;
+        resize: none;
+        &:focus {
+          font-size: 1.6rem;
+        }
+      }
+      form {
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .wp-block-image {
+        //max-width: 75%;
+        margin: 3em auto;
+        figcaption {
+          font-size: 1.3rem;
+        }
+      }
+      .wp-block-table {
+        width: 100%;
+        margin: 3em 0;
+        th, td {
+          font-size: 1.5rem;
+        }
+        th {
+          font-size: 1.3rem;
+        }
+      }
+      .simpleTable {
+        display: inline-block;
+        width: auto;
+        th {
+          font-size: 1.3rem;
+        }
+      }
+      .uagb-google-map__wrap {
+        margin: 3em 0;
+      }
+    }
+  }
+
+  .post_moreWrap {
+    margin-top: 1em;
+    & + & {
+      margin-top: 0;
+    }
+  }
+
+  .post_more {
+    display: inline-block;
+    font-family: var.$font-gothic;
+    line-height: 3;
+    font-size: 1.3rem;
+    span {
+      margin-left: .5em;
+      font-size: 1.1rem;
+    }
+    i {
+      vertical-align: -5px;
+      font-size: 17px;
+    }
+    @include mixins.media() {
+      font-size: 1.5rem;
+      @include mixins.hoverAction('bar');
+      span {
+        font-size: 1.2rem;
+      }
+      i {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .post_cover {
+    margin-bottom: 1em;
+    @include mixins.media() {
+      margin-right: 7%;
+      margin-bottom: 0;
+      flex-basis: 44%;
+      flex-shrink: 0;
+    }
+  }
+
+  .post-book {
+    @include mixins.media() {
+      display: flex;
+    }
+  }
+
+  .post_bodyWrap {
+    @include mixins.media() {
+      flex-grow: 1;
+    }
+  }
+
+  .post_bookDataWrap {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .post_bookData {
+    display: flex;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    opacity: .6;
+    dt {
+      &:before {
+        content: '［';
+      }
+      &:after {
+        content : "］"
+      }
+    }
+    @include mixins.media() {
+      font-size: 1.3rem;
+    }
+  }
