@@ -2,11 +2,11 @@ import Layout from '~/components/Layout'
 import SingleGame from '~/components/SingleGame'
 import CheckHasPosts from '~/components/CheckHasPosts'
 import CategoryHeading from '~/components/elements/CategoryHeading'
-import { fetchVideos } from '~/components/general/fetchVideos'
+import { fetchVideos } from '~/components/general/fetch'
 
 const meta = {
   title: 'Games - 千柩堂',
-  description: 'ですくりぷしょん',
+  description: 'ですくりぷしょんss',
 }
 
 const Games = ({ videos }) => {

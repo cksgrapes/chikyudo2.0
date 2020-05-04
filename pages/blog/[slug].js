@@ -1,6 +1,6 @@
 import Layout from '~/components/Layout'
 import SingleBlog from '~/components/SingleBlog'
-import { fetchEntries } from '~/components/general/fetchEntries';
+import { fetchEntries } from '~/components/general/fetch';
 
 const meta = {
   title: 'Blog - 千柩堂',

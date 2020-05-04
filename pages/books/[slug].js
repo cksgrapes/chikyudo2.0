@@ -1,6 +1,6 @@
 import Layout from '~/components/Layout'
 import SingleBook from '~/components/SingleBook'
-import { fetchEntries } from '~/components/general/fetchEntries';
+import { fetchEntries } from '~/components/general/fetch';
 
 const meta = {
   title: 'Books詳細 - 千柩堂',

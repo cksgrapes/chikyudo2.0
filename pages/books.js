@@ -2,7 +2,7 @@ import Layout from '~/components/Layout'
 import SingleBook from '~/components/SingleBook'
 import CheckHasPosts from '~/components/CheckHasPosts'
 import CategoryHeading from '~/components/elements/CategoryHeading'
-import { fetchEntries } from '~/components/general/fetchEntries';
+import { fetchEntries } from '~/components/general/fetch';
 
 const meta = {
   title: 'Books - 千柩堂',
