@@ -8,7 +8,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import styles from '~/components/styles/modules/layouts/Post.module.scss'
 import generalStyles from '~/components/styles/modules/layouts/General.module.scss'
 
-class BlogTemplate extends React.Component {
+class SingleBlog extends React.Component {
   constructor(props) {
     super(props)
   }
@@ -37,9 +37,9 @@ class BlogTemplate extends React.Component {
   }
 }
 
-BlogTemplate.defaultProps = {
+SingleBlog.defaultProps = {
   heading: '記事タイトル',
   publishedDate: '0000.00.0.00 Thu 00:00'
 }
 
-export default BlogTemplate
+export default SingleBlog

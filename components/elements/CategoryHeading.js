@@ -6,10 +6,10 @@ import { ExpandMore } from '@material-ui/icons';
 
 const getNavItems = () => {
   return [
-      { name: 'Blog', path: '/blog/information' },
+      { name: 'Blog', path: '/blog' },
       { name: 'Information', path: '/blog/information' },
       { name: 'Books', path: '/works' },
-      { name: 'Tips', path: '/blog' },
+      { name: 'Tips', path: '/blog/tips' },
       { name: 'Photos', path: '/photo' },
       { name: 'Journal', path: '/blog/journal' },
       { name: 'Events', path: '/events' },

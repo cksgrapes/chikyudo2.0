@@ -7,4 +7,5 @@ export async function fetchEntries(param) {
   const entries = await client.getEntries(param)
   if (entries.items) return entries.items
   console.log(`Error getting Entries for ${contentType.name}.`)
+  return null
 }
