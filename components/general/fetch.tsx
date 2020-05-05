@@ -41,14 +41,14 @@ export async function fetchVideos(resource, params) {
  * @param {*} limit 取得数を指定/未指定なら全件
  * @param {*} fields 取得フィールドを指定
  */
-export function fetchPhotos(limit, fields) {
+export function fetchPhotos(limit? : number, fields? : string) {
   const IG_BUSINESS_ACCOUNT = process.env.IG_BUSINESS_ACCOUNT
   const IG_ACCESS_TOKEN = process.env.IG_ACCESS_TOKEN
   const API_URL = `https://graph.facebook.com/v6.0/`
-  limit = `&limit=${limit}` || null
+  const paramLimit = `&limit=${limit}` || null
   fields = fields || 'id,caption,media_url,permalink,media_type,timestamp'
 
-  const ALL_POSTS_URL = `${API_URL}${IG_BUSINESS_ACCOUNT}/media?fields=${fields}${limit}&access_token=${IG_ACCESS_TOKEN}`;
+  const ALL_POSTS_URL = `${API_URL}${IG_BUSINESS_ACCOUNT}/media?fields=${fields}${paramLimit}&access_token=${IG_ACCESS_TOKEN}`;
 
   const medias = axios
     .get(ALL_POSTS_URL)

@@ -27,5 +27,9 @@
     "ress": "^2.0.4",
     "sass": "^1.26.5",
     "unified": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^13.13.4",
+    "typescript": "^3.8.3"
   }
 }

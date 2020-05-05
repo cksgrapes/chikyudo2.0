@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { GetStaticProps } from 'next'
 import Layout from '~/components/Layout'
-import Link from 'next/link';
-import ExLink from '~/components/elements/ExLink';
-import { fetchEntries, fetchVideos, fetchPhotos } from '~/components/general/fetch';
+import {
+  fetchEntries,
+  fetchVideos,
+  fetchPhotos,
+} from '~/components/general/fetch'
 
 // const getWorkItems = () => {
 //   return [
@@ -54,11 +56,11 @@ import { fetchEntries, fetchVideos, fetchPhotos } from '~/components/general/fet
 //   ];
 // }
 
-const Home = ({pickupBook, pickupGame, pickupPhoto}) => {
-  console.log({pickupBook});
-  console.log({pickupGame});
-  console.log({pickupPhoto});
-  return(
+const Home = ({ pickupBook, pickupGame, pickupPhoto }) => {
+  console.log({ pickupBook })
+  console.log({ pickupGame })
+  console.log({ pickupPhoto })
+  return (
     <>
       <Layout>
         {/* {posts.length > 0
@@ -79,17 +81,17 @@ const Home = ({pickupBook, pickupGame, pickupPhoto}) => {
   )
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async (context) => {
   const pickupBook = await fetchEntries({
     content_type: 'books',
     order: '-fields.issue',
-    limit: 1
+    limit: 1,
   })
   const pickupGame = await fetchVideos('search', {
     part: 'id,snippet',
     channelId: 'UCfN4BiPIfaTzuuX2n1aYyRg',
     order: 'date',
-    maxResults: 1
+    maxResults: 1,
   })
   const pickupPhoto = await fetchPhotos(1)
 
@@ -97,8 +99,8 @@ export async function getStaticProps() {
     props: {
       pickupBook: pickupBook[0],
       pickupGame: pickupGame[0],
-      pickupPhoto : pickupPhoto.data[0]
-    }
+      pickupPhoto: pickupPhoto.data[0],
+    },
   }
 }
 
