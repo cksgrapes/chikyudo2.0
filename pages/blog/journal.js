@@ -13,7 +13,7 @@ const Blog = ( {posts} ) => {
   return(
     <Layout meta={meta}>
       <CategoryHeading
-        name="Blog"
+        name="Journal"
         description="日々つれづれよもやまばなし"
       />
       <CheckHasPosts posts={posts}>
@@ -24,10 +24,13 @@ const Blog = ( {posts} ) => {
 }
 
 export async function getStaticProps({params}) {
+
   const posts = await fetchEntries({
     content_type: 'blog',
-    order: '-sys.createdAt'
+    'fields.category.sys.contentType.sys.id': 'blogCategory',
+    'fields.category.fields.slug': 'journal'
   })
+
   return {
     props: {
       posts

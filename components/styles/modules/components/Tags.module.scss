@@ -1,0 +1,33 @@
+@use '../../abstracts/variables' as var;
+@use '../../abstracts/mixins';
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 1rem;
+  margin: .5em -2px;
+  line-height: 1;
+  font-family: var.$font-ten-mincho;
+  letter-spacing: .15em;
+}
+
+.tags_item {
+  margin: 2px;
+  padding: 4px 6px;
+  display: inline-block;
+  border-radius: 4px;
+  color: var.$color-txt-gray;
+  background-color: #f9f9f9;
+}
+
+.tags-setLink {
+  .tags_item {
+    padding: 0;
+    a {
+      color: inherit;
+      display: inline-block;
+      padding: 4px 6px;
+    }
+  }
+}

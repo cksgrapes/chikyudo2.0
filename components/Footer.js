@@ -1,4 +1,5 @@
-import ExLink from '../components/elements/ExLink';
+import ExLink from '~/components/elements/ExLink';
+import styles from '~/components/styles/modules/layouts/Footer.module.scss'
 
 const getNavItems = () => {
     return [
@@ -13,11 +14,11 @@ const getNavItems = () => {
 };
 
 const Footer = () => (
-    <footer className="footer">
-        <ul id="menu-footer-menu" className="footerLinks">
+    <footer className={styles.footer}>
+        <ul id="menu-footer-menu" className={styles.footerLinks}>
             {getNavItems().map(item => <li key={item.name}>{ExLink(item)}</li>)}
         </ul>
-        <p className="copy">
+        <p className={styles.copy}>
             <small>© 2019 Masaki Chikashi.</small>
         </p>
     </footer>
