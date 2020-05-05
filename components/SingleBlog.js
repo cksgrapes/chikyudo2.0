@@ -24,7 +24,7 @@ class SingleBlog extends React.Component {
            <Link href={`/blog/[slug]`} as={`/blog/${fields.slug}`}><a>{fields.title}</a></Link>
           </h2>
           <div className={styles.post_data}>
-            { Tags(postData.categories(), [styles.post_tags]) }
+            { Tags(postData.category(), [styles.post_tags]) }
             <p className={styles.post_date}>{postData.publishedDate()}</p>
           </div>
           <div className={styles.post_body}>

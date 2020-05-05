@@ -12,15 +12,20 @@
       transition: transform .2s ease-out;
     }
   }
-  &.is-open .post_heading i {
+  @include mixins.media() {
+    padding: 7em 0;
+    .post_heading:hover svg {
+      transform: translateY(10%);
+    }
+  }
+}
+
+.openedCategoryHeading{
+  &  > svg {
     transform: rotate(180deg);
   }
   @include mixins.media() {
-    padding: 7em 0;
-    .post_heading:hover i {
-      transform: translateY(10%);
-    }
-    &.is-open .post_heading:hover i {
+    &:hover > svg {
       transform: rotate(180deg) translateY(10%);
     }
   }

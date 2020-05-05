@@ -28,32 +28,33 @@
     visibility: hidden;
     transition: line-height .2s ease-out, opacity .2s ease-out, visibility .2s ease-out;
   }
-  .is-open & {
-    padding-top: 1em;
-    padding-bottom: 1em;
-    li {
-      margin-top: .5em;
-      margin-bottom: .5em;
-    }
-    a {
-      line-height: 2.5;
-      opacity: 1;
-      visibility: visible;
-    }
-  }
   @include mixins.media() {
     font-size: 1.5rem;
     a {
       @include mixins.hoverAction('bar');
     }
-    .is-open & {
-      li {
-        margin-top: 1em;
-        margin-bottom: 1em;
-      }
-      a {
-        line-height: 2;
-      }
+  }
+}
+
+.openedCategoryList {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  li {
+    margin-top: .5em;
+    margin-bottom: .5em;
+  }
+  a {
+    line-height: 2.5;
+    opacity: 1;
+    visibility: visible;
+  }
+  @include mixins.media() {
+    li {
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+    a {
+      line-height: 2;
     }
   }
 }

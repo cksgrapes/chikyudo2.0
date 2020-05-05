@@ -19,6 +19,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-paginate": "^6.3.2",
+    "remark-collapse": "^0.1.2",
     "remark-iframes": "^4.0.4",
     "remark-parse": "^8.0.2",
     "remark-react": "^7.0.1",

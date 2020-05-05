@@ -1,6 +1,7 @@
 import unified from 'unified'
 import parse from 'remark-parse'
 import remark2react from 'remark-react'
+// import collapse from 'remark-collapse'
 // import shortcodes from 'remark-shortcodes'
 // import remarkIframe from 'remark-iframes'
 

@@ -10,7 +10,6 @@ class MyDocument extends Document {
     return (
       <Html lang="ja">
         <Head>
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP|Sawarabi+Mincho" rel="stylesheet" />
         </Head>
         <body>
           <Main />
