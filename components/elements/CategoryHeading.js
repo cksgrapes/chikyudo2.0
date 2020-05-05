@@ -9,7 +9,7 @@ const getNavItems = () => {
   return [
     { name: 'Books', path: '/books' },
     { name: 'Games', path: '/games' },
-    { name: 'Photos', path: '/photo' },
+    { name: 'Photos', path: '/photos' },
     { name: 'Tips', path: '/blog/tips' },
     { name: 'Journal', path: '/blog/journal' },
     { name: 'Blog', path: '/blog' },

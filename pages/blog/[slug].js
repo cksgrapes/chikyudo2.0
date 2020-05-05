@@ -10,7 +10,7 @@ const meta = {
 const SingleBlogPost = (post) => {
   return(
       <Layout meta={meta}>
-        <SingleBlog post={post} />
+        <SingleBlog post={post} isArchive={false} />
       </Layout>
   )
 }
