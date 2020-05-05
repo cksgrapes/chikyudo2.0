@@ -1,9 +1,8 @@
 import Link from 'next/link';
 import Tags from '~/components/elements/Tags'
+import Markdown from '~/components/elements/Markdown'
 import classNames from 'classnames'
 import getPostData from '~/components/general/getPostData';
-// import { BLOCKS } from '@contentful/rich-text-types';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import styles from '~/components/styles/modules/layouts/Post.module.scss'
 import generalStyles from '~/components/styles/modules/layouts/General.module.scss'
@@ -29,7 +28,7 @@ class SingleBlog extends React.Component {
             <p className={styles.post_date}>{postData.publishedDate()}</p>
           </div>
           <div className={styles.post_body}>
-            { documentToReactComponents(fields.content) }
+            <Markdown content={fields.body} />
           </div>
         </section>
       </>

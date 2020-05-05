@@ -1,12 +1,8 @@
 import Link from 'next/link';
-import Tags from '~/components/elements/Tags'
-import getPostData from '~/components/general/getPostData';
+import Markdown from '~/components/elements/Markdown'
 import classNames from 'classnames'
 import dayjs from 'dayjs';
 import { ChevronRight } from '@material-ui/icons';
-
-// import { BLOCKS } from '@contentful/rich-text-types';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import styles from '~/components/styles/modules/layouts/Post.module.scss'
 import generalStyles from '~/components/styles/modules/layouts/General.module.scss'
@@ -85,7 +81,7 @@ const PostImages = (props) => {
       { images.map(image => {
         return (
           <picture>
-            <source type="image/webp" srcset={`https:${image.fields.file.url}?fm=webp`}  />
+            <source type="image/webp" srcSet={`https:${image.fields.file.url}?fm=webp`}  />
             <img src={`https:${image.fields.file.url}`} alt="" />
           </picture>
         )
@@ -111,9 +107,9 @@ class SingleBook extends React.Component {
             <h2 className={styles.post_heading}>
               <Link href={`/books/[slug]`} as={`/books/${fields.slug}`}><a>{fields.title}</a></Link>
             </h2>
-            <p class={styles.post_bookCredit}>{fields.credit}</p>
+            <p className={styles.post_bookCredit}>{fields.credit}</p>
             <div className={styles.post_body}>
-              { documentToReactComponents(fields.content) }
+              <Markdown content={fields.intro} />
             </div>
             <BookData fields={fields} />
             <PostMoreLink

@@ -41,6 +41,10 @@ $header-height: 70px;
   }
 }
 
+.headerOpenerTrigger {
+  display: none;
+}
+
 .header_openMenu {
   cursor: pointer;
   position: relative;
@@ -49,7 +53,7 @@ $header-height: 70px;
   width: $header-height - 10;
   height: $header-height;
   background-color: transparent;
-  i {
+  svg {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -69,7 +73,7 @@ $header-height: 70px;
   .categoryList {
     justify-content: flex-end;
   }
-  &.is-open .categoryList {
+  .headerOpenerTrigger:checked ~ & .categoryList {
     padding-top: 0.5em;
   }
   @include mixins.media() {

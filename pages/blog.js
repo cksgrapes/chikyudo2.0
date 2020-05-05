@@ -25,7 +25,8 @@ const Blog = ( {posts} ) => {
 
 export async function getStaticProps({params}) {
   const posts = await fetchEntries({
-    content_type: 'blog'
+    content_type: 'blog',
+    order: '-sys.createdAt'
   })
   return {
     props: {

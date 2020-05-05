@@ -10,6 +10,10 @@ const meta = {
 }
 
 function Photos ({ posts }) {
+  if (!posts) {
+    return null;
+  }
+
   return (
     <Layout meta={meta}>
       <CategoryHeading name="Photos" description="Instagram" />
