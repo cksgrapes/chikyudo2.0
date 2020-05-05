@@ -1,7 +1,7 @@
-import Layout from '../components/Layout'
-import Post from '../components/Post'
+import Layout from '~/components/Layout'
+import Page from '~/components/Page'
 import Link from 'next/link';
-import ExLink from '../components/elements/ExLink';
+import ExLink from '~/components/elements/ExLink';
 
 const meta = {
   title: 'Privacy Policy - 千柩堂',
@@ -10,7 +10,7 @@ const meta = {
 
 const PrivacyPolicy = () => (
   <Layout meta={meta}>
-    <Post
+    <Page
       heading="Privacy Policy"
       description="個人情報保護方針"
     >
@@ -48,7 +48,7 @@ const PrivacyPolicy = () => (
       <h2>運営者情報</h2>
       <p>運営者：柾千樫<br />サイトURL：<a href="https://chikyudo.org">https://chikyudo.org</a><br />お問い合わせは<a href="https://chikyudo.org/contacts/">こちらのフォーム</a>よりお願いいたします。</p>
       <p>初出掲載：2019年4月4日<br />最終更新：2019年4月4日</p>
-    </Post>
+    </Page>
   </Layout>
 )
 

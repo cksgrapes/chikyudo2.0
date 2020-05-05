@@ -1,36 +1,36 @@
 import Layout from '~/components/Layout'
-import SingleBlog from '~/components/SingleBlog'
+import SingleBook from '~/components/SingleBook'
 import { fetchEntries } from '~/components/general/fetch';
 
 const meta = {
-  title: 'Blog - 千柩堂',
+  title: 'Books詳細 - 千柩堂',
   description: 'ですくりぷしょん'
 };
 
-const SingleBlogPost = (post) => {
+const SingleBookPost = (post) => {
   return(
       <Layout meta={meta}>
-        <SingleBlog post={post} />
+        <SingleBook post={post} />
       </Layout>
   )
 }
 
 export async function getStaticPaths() {
   const posts = await fetchEntries({
-    content_type: 'blog'
+    content_type: 'books'
   })
 
-  const paths = posts.map(post => `/blog/${post.fields.slug}`);
+  const paths = posts.map(post => `/books/${post.fields.slug}`);
   return { paths, fallback: false };
 }
 
 export async function getStaticProps({params}) {
   const posts = await fetchEntries({
-    content_type: 'blog',
+    content_type: 'books',
     'fields.slug': params.slug
   })
 
   return { props: posts[0] };
 }
 
-export default SingleBlogPost
+export default SingleBookPost

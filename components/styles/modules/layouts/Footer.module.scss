@@ -1,0 +1,49 @@
+@use '../../abstracts/variables' as var;
+@use '../../abstracts/mixins';
+
+// ========================================
+// Footer
+// ========================================
+
+.footer {
+  margin: 10em 2em 0;
+  padding-bottom: 5em;
+  font-size: 1.1rem;
+  @include mixins.media() {
+    font-size: 1.2rem;
+  }
+}
+
+.footerLinks {
+  margin-bottom: 3em;
+  line-height: 2;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-family: var.$font-ten-mincho;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  li {
+    margin: .5em 1em;
+  }
+  @include mixins.media() {
+    a {
+      display: inline-block;
+      @include mixins.hoverAction('bar');
+    }
+  }
+}
+
+.copy {
+  font-family: var.$font-ten-mincho;
+  text-align: center;
+  font-size: 1rem;
+  letter-spacing: .1em;
+  small {
+    font-size: 1em;
+  }
+  @include mixins.media() {
+    font-size: 1.2rem;
+  }
+  opacity: .7;
+}

@@ -8,9 +8,23 @@
     "start": "next start"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^13.4.0",
+    "@material-ui/core": "^4.9.12",
+    "@material-ui/icons": "^4.9.1",
+    "axios": "^0.19.2",
+    "classnames": "^2.2.6",
     "contentful": "^7.14.4",
+    "dayjs": "^1.8.26",
     "next": "9.3.6",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-paginate": "^6.3.2",
+    "remark-iframes": "^4.0.4",
+    "remark-parse": "^8.0.2",
+    "remark-react": "^7.0.1",
+    "remark-shortcodes": "^0.3.1",
+    "ress": "^2.0.4",
+    "sass": "^1.26.5",
+    "unified": "^9.0.0"
   }
 }

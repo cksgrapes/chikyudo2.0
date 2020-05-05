@@ -1,7 +1,7 @@
-import Layout from '../components/Layout'
-import Post from '../components/Post'
+import Layout from '~/components/Layout'
+import Page from '~/components/Page'
 import Link from 'next/link';
-import ExLink from '../components/elements/ExLink';
+import ExLink from '~/components/elements/ExLink';
 
 const meta = {
   title: 'About - 千柩堂',
@@ -10,7 +10,7 @@ const meta = {
 
 const About = () => (
   <Layout meta={meta}>
-    <Post
+    <Page
       heading="About"
       description="概要"
     >
@@ -19,7 +19,7 @@ const About = () => (
       <h2>柾千樫</h2>
       <p>Masaki Chikashi／1993.03.14／Pisces／AB<br />詩人、小説家、編集、歌手、写真家、Webデベロッパー。<br />静脈管のうちがわに根づくひとつのクリエイティブ・ナーバス。</p>
       <p>おしごとのご相談は<a href="https://chikyudo.org/contacts/">お問い合わせ</a>よりご連絡ください。</p>
-    </Post>
+    </Page>
   </Layout>
 )
 
