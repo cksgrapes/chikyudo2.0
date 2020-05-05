@@ -2,75 +2,66 @@ import { useEffect, useState } from 'react'
 import Layout from '~/components/Layout'
 import Link from 'next/link';
 import ExLink from '~/components/elements/ExLink';
-import { fetchEntries } from '~/components/general/fetch';
+import { fetchEntries, fetchVideos, fetchPhotos } from '~/components/general/fetch';
 
-const getWorkItems = () => {
-  return [
-      { name: 'Book', path: '/'},
-      { name: 'Game', path: '/'},
-      // { name: 'Song', path: '/'},
-      { name: 'Photo', path: '/'},
-  ];
-};
+// const getWorkItems = () => {
+//   return [
+//       { name: 'Book', path: '/'},
+//       { name: 'Game', path: '/'},
+//       // { name: 'Song', path: '/'},
+//       { name: 'Photo', path: '/'},
+//   ];
+// };
 
-const pickupBook = () => {
-  return(
-    <div className="pickup_book">
-        <Link href="/"><a><img src="https://placehold.jp/150x300.png" /></a></Link>
-    </div>
-  );
-};
+// const pickupBook = () => {
+//   return(
+//     <div className="pickup_book">
+//         <Link href="/"><a><img src="https://placehold.jp/150x300.png" /></a></Link>
+//     </div>
+//   );
+// };
 
-const pickupGame = () => {
-  return(
-    <div className="pickup_book">
-        <Link href="/"><a><img src="https://placehold.jp/300x150.png" /></a></Link>
-    </div>
-  );
-};
+// const pickupGame = () => {
+//   return(
+//     <div className="pickup_book">
+//         <Link href="/"><a><img src="https://placehold.jp/300x150.png" /></a></Link>
+//     </div>
+//   );
+// };
 
-const pickupPhoto = () => {
-  return(
-    <div className="pickup_photo">
-        <Link href="/"><a><img src="https://placehold.jp/150x150.png" /></a></Link>
-    </div>
-  );
-};
+// const pickupPhoto = () => {
+//   return(
+//     <div className="pickup_photo">
+//         <Link href="/"><a><img src="https://placehold.jp/150x150.png" /></a></Link>
+//     </div>
+//   );
+// };
 
-const pickupItems = () => {
-  return [
-      {
-        id: 'book',
-        view: pickupBook
-      },
-      {
-        id: 'game',
-        view: pickupGame
-      },
-      {
-        id: 'photo',
-        view: pickupPhoto
-      }
-  ];
-}
+// const pickupItems = () => {
+//   return [
+//       {
+//         id: 'book',
+//         view: pickupBook
+//       },
+//       {
+//         id: 'game',
+//         view: pickupGame
+//       },
+//       {
+//         id: 'photo',
+//         view: pickupPhoto
+//       }
+//   ];
+// }
 
-const Home = () => {
-  const [posts, setPosts] = useState([])
-
-  useEffect(() => {
-    async function getPosts() {
-      const allPosts = await fetchEntries({
-        content_type: 'books'
-      })
-      setPosts([...allPosts])
-    }
-    getPosts()
-  }, [])
-
+const Home = ({pickupBook, pickupGame, pickupPhoto}) => {
+  console.log({pickupBook});
+  console.log({pickupGame});
+  console.log({pickupPhoto});
   return(
     <>
       <Layout>
-        {posts.length > 0
+        {/* {posts.length > 0
           ? posts.map(p => (
           <p key={p.fields.title}>{p.fields.title}</p>
             ))
@@ -82,10 +73,33 @@ const Home = () => {
           <div className="pickup_items">
             {pickupItems().map(item => <div key={ item.id } className={ item.id }>{ item.view() }</div>)}
           </div>
-        </div>
+        </div> */}
       </Layout>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const pickupBook = await fetchEntries({
+    content_type: 'books',
+    order: '-fields.issue',
+    limit: 1
+  })
+  const pickupGame = await fetchVideos('search', {
+    part: 'id,snippet',
+    channelId: 'UCfN4BiPIfaTzuuX2n1aYyRg',
+    order: 'date',
+    maxResults: 1
+  })
+  const pickupPhoto = await fetchPhotos(1)
+
+  return {
+    props: {
+      pickupBook: pickupBook[0],
+      pickupGame: pickupGame[0],
+      pickupPhoto : pickupPhoto.data[0]
+    }
+  }
 }
 
 export default Home

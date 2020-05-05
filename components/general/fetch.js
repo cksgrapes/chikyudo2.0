@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 /**
- * Contentful
+ * Contentful投稿取得
  */
 const client = require('contentful').createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
@@ -16,10 +16,11 @@ export async function fetchEntries(param) {
 }
 
 /**
- * YouTube
+ * YouTube動画取得
+ * @param {*} resource
+ * @param {*} params
  */
 export async function fetchVideos(resource, params) {
-  // const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY
   const API_URL = `https://www.googleapis.com/youtube/v3/${resource}`
   params.key = process.env.YOUTUBE_API_KEY
 
@@ -36,14 +37,18 @@ export async function fetchVideos(resource, params) {
 }
 
 /**
- * Instagram
+ * Instagram投稿取得
+ * @param {*} limit 取得数を指定/未指定なら全件
+ * @param {*} fields 取得フィールドを指定
  */
-export function fetchPhotos() {
+export function fetchPhotos(limit, fields) {
   const IG_BUSINESS_ACCOUNT = process.env.IG_BUSINESS_ACCOUNT
   const IG_ACCESS_TOKEN = process.env.IG_ACCESS_TOKEN
   const API_URL = `https://graph.facebook.com/v6.0/`
+  limit = `&limit=${limit}` || null
+  fields = fields || 'id,caption,media_url,permalink,media_type,timestamp'
 
-  const ALL_POSTS_URL = `${API_URL}${IG_BUSINESS_ACCOUNT}/media?fields=id,caption,media_url,permalink,media_type,timestamp&access_token=${IG_ACCESS_TOKEN}`;
+  const ALL_POSTS_URL = `${API_URL}${IG_BUSINESS_ACCOUNT}/media?fields=${fields}${limit}&access_token=${IG_ACCESS_TOKEN}`;
 
   const medias = axios
     .get(ALL_POSTS_URL)

@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import '~/components/styles/main.scss'
 
 const loadTypekit = () => {
@@ -14,7 +16,10 @@ const loadTypekit = () => {
 }
 
 function MyApp({ Component, pageProps }) {
-  loadTypekit()
+  useEffect(() => {
+    loadTypekit()
+  }, []);
+
   return <Component {...pageProps} />
 }
 
