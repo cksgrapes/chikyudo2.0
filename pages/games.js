@@ -12,7 +12,7 @@ const meta = {
 const Games = ({ videos }) => {
   return (
     <Layout meta={meta}>
-      <CategoryHeading name="Games" description="ゲーム実況" />
+      <CategoryHeading name="Games" description="ゲーム実況" type="works" />
       <CheckHasPosts posts={videos}>
         {videos.map((video) => (
           <SingleGame id={video.id.videoId} snippet={video.snippet} key={video.etag} />

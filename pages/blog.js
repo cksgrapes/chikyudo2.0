@@ -2,37 +2,40 @@ import Layout from '~/components/Layout'
 import SingleBlog from '~/components/SingleBlog'
 import CheckHasPosts from '~/components/CheckHasPosts'
 import CategoryHeading from '~/components/elements/CategoryHeading'
-import { fetchEntries } from '~/components/general/fetch';
+import { fetchEntries } from '~/components/general/fetch'
 
 const meta = {
   title: 'Blog - 千柩堂',
-  description: 'ですくりぷしょん'
-};
+  description: '',
+}
 
-const Blog = ( {posts} ) => {
-  return(
+const Blog = ({ posts }) => {
+  return (
     <Layout meta={meta}>
       <CategoryHeading
         name="Blog"
         description="日々つれづれよもやまばなし"
+        type="blog"
       />
       <CheckHasPosts posts={posts}>
-        {posts.map(post => (<SingleBlog key={post.fields.slug} post={post} />))}
+        {posts.map((post) => (
+          <SingleBlog key={post.fields.slug} post={post} />
+        ))}
       </CheckHasPosts>
     </Layout>
   )
 }
 
-export async function getStaticProps({params}) {
+export async function getStaticProps({ params }) {
   const posts = await fetchEntries({
     content_type: 'blog',
-    order: '-sys.createdAt'
+    order: '-sys.createdAt',
   })
   return {
     props: {
-      posts
-    }
-  };
+      posts,
+    },
+  }
 }
 
 export default Blog

@@ -2,37 +2,36 @@ import Layout from '~/components/Layout'
 import SingleBook from '~/components/SingleBook'
 import CheckHasPosts from '~/components/CheckHasPosts'
 import CategoryHeading from '~/components/elements/CategoryHeading'
-import { fetchEntries } from '~/components/general/fetch';
+import { fetchEntries } from '~/components/general/fetch'
 
 const meta = {
   title: 'Books - 千柩堂',
-  description: 'ですくりぷしょん'
-};
+  description: '',
+}
 
-const Blog = ( {posts} ) => {
-  return(
+const Blog = ({ posts }) => {
+  return (
     <Layout meta={meta}>
-      <CategoryHeading
-        name="Books"
-        description="出版物"
-      />
+      <CategoryHeading name="Books" description="出版物" type="works" />
       <CheckHasPosts posts={posts}>
-        {posts.map(post => (<SingleBook key={post.fields.slug} post={post} />))}
+        {posts.map((post) => (
+          <SingleBook key={post.fields.slug} post={post} />
+        ))}
       </CheckHasPosts>
     </Layout>
   )
 }
 
-export async function getStaticProps({params}) {
+export async function getStaticProps({ params }) {
   const posts = await fetchEntries({
     content_type: 'books',
-    order: '-fields.issue'
+    order: '-fields.issue',
   })
   return {
     props: {
-      posts
-    }
-  };
+      posts,
+    },
+  }
 }
 
 export default Blog

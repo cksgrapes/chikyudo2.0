@@ -4,37 +4,31 @@ import Footer from '~/components/Footer'
 
 const meta = {
   title: '千柩堂',
-  description: 'ですくりぷしょん',
+  description: '柾千樫公式サイト『千柩堂』',
 }
 
-class Layout extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+const Layout = (props) => {
+  const { children, meta } = props
 
-  render() {
-    const { children, meta } = this.props
-
-    return (
-      <>
-        <Head>
-          <title>{meta.title}</title>
-          <meta
-            name="viewport"
-            content="minimum-scale=1, initial-scale=1, width=device-width"
-          />
-          <meta name="format-detection" content="telephone=no" />
-        </Head>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </>
-    )
-  }
+  return (
+    <>
+      <Head>
+        <title>{meta.title}</title>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
+        <meta name="format-detection" content="telephone=no" />
+      </Head>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </>
+  )
 }
 
 Layout.defaultProps = {
-  meta: meta,
+  meta,
 }
 
 export default Layout

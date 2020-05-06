@@ -1,13 +1,19 @@
-import Link from 'next/link';
+import Link from 'next/link'
 import unified from 'unified'
 import parse from 'remark-parse'
 import remark2react from 'remark-react'
-// import collapse from 'remark-collapse'
-// import shortcodes from 'remark-shortcodes'
-// import remarkIframe from 'remark-iframes'
-
 import { ChevronRight } from '@material-ui/icons'
+
+import { MyParagraph, MyImg } from '~/components/elements/RemarkComponents.js'
+
 import styles from '~/components/styles/modules/layouts/Post.module.scss'
+
+const remark2ReactOptions = {
+  remarkReactComponents: {
+    img: MyImg,
+    p: MyParagraph,
+  },
+}
 
 const removeStartNewLine = (content) => {
   if (!content.startsWith('\n')) {
@@ -25,11 +31,11 @@ const SplitedContents = ({ content, separator, removeMore, linkData }) => {
   }
   const srcExcerpt = unified()
     .use(parse)
-    .use(remark2react)
+    .use(remark2react, remark2ReactOptions)
     .processSync(splitedContent.excerpt).result
   const srcMore = unified()
     .use(parse)
-    .use(remark2react)
+    .use(remark2react, remark2ReactOptions)
     .processSync(splitedContent.more).result
 
   if (removeMore) {
@@ -79,7 +85,10 @@ const Markdown = (props) => {
     }
   }
 
-  return unified().use(parse).use(remark2react).processSync(content).result
+  return unified()
+    .use(parse)
+    .use(remark2react, remark2ReactOptions)
+    .processSync(content).result
 }
 
 export default Markdown

@@ -6,20 +6,20 @@ import { fetchPhotos } from '~/components/general/fetch'
 
 const meta = {
   title: 'Photos - 千柩堂',
-  description: 'ですくりぷしょん',
+  description: '',
 }
 
-function Photos ({ posts }) {
+const Photos = ({ posts }) => {
   if (!posts) {
-    return null;
+    return null
   }
 
   return (
     <Layout meta={meta}>
-      <CategoryHeading name="Photos" description="Instagram" />
+      <CategoryHeading name="Photos" description="Instagram" type="works" />
       {posts.map((post) => (
-          <SinglePhoto data={post} key={post.id} />
-        ))}
+        <SinglePhoto data={post} key={post.id} />
+      ))}
     </Layout>
   )
 }
@@ -29,8 +29,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: posts.data
-    }
+      posts: posts.data,
+    },
   }
 }
 

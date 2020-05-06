@@ -1,23 +1,34 @@
 import { useState } from 'react'
+import { ExpandMore } from '@material-ui/icons'
+import classNames from 'classnames'
+
 import CategoryList from '~/components/elements/CategoryList'
+
 import styles from '~/components/styles/modules/layouts/Post.module.scss'
 import generalStyles from '~/components/styles/modules/layouts/General.module.scss'
-import classNames from 'classnames'
-import { ExpandMore } from '@material-ui/icons'
 
-const getNavItems = () => {
-  return [
-    { name: 'Books', path: '/books' },
-    { name: 'Games', path: '/games' },
-    { name: 'Photos', path: '/photos' },
-    { name: 'Tips', path: '/blog/tips' },
-    { name: 'Journal', path: '/blog/journal' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Information', path: '/blog/information' }
+const getNavItems = (type) => {
+  const items = [
+    { name: 'Works', path: '/works', type: 'works' },
+    { name: 'Books', path: '/books', type: 'works' },
+    { name: 'Games', path: '/games', type: 'works' },
+    { name: 'Photos', path: '/photos', type: 'works' },
+    { name: 'Blog', path: '/blog', type: 'blog' },
+    { name: 'Tips', path: '/blog/tips', type: 'blog' },
+    { name: 'Journal', path: '/blog/journal', type: 'blog' },
+    { name: 'Information', path: '/blog/information', type: 'blog' },
   ]
+
+  let filteringItems
+  if (type) {
+    filteringItems = items.filter((item) => item.type === type)
+  }
+
+  return filteringItems || items
 }
 
 const CategoryHeading = (props) => {
+  const { name, description, type } = props
   const [openState, setOpenState] = useState(false)
 
   const toggleNav = () => {
@@ -32,13 +43,13 @@ const CategoryHeading = (props) => {
         })}
         onClick={toggleNav}
       >
-        {props.name}
+        {name}
         <ExpandMore />
       </h1>
-      {props.description ? (
-        <p className={styles.post_subHeading}>{props.description}</p>
+      {description ? (
+        <p className={styles.post_subHeading}>{description}</p>
       ) : null}
-      <CategoryList items={getNavItems()} openState={openState} />
+      <CategoryList items={getNavItems(type)} openState={openState} />
     </div>
   )
 }

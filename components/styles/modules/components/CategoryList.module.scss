@@ -47,6 +47,7 @@
     line-height: 2.5;
     opacity: 1;
     visibility: visible;
+    border-bottom: 1px solid #f2f2f2;
   }
   @include mixins.media() {
     li {

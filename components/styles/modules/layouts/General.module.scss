@@ -5,27 +5,28 @@
 .pageHeading {
   position: relative;
   padding: 5em 2em 3em;
-  .post_heading {
+  & h1 {
     display: inline-block;
     cursor: pointer;
-    i {
+    svg {
       transition: transform .2s ease-out;
+      font-size: 24px;
     }
   }
   @include mixins.media() {
     padding: 7em 0;
-    .post_heading:hover svg {
+    & h1:hover svg {
       transform: translateY(10%);
     }
   }
 }
 
 .openedCategoryHeading{
-  &  > svg {
+  &  svg {
     transform: rotate(180deg);
   }
   @include mixins.media() {
-    &:hover > svg {
+    &:hover svg {
       transform: rotate(180deg) translateY(10%);
     }
   }
