@@ -1,19 +1,17 @@
+import React from 'react'
 import Head from 'next/head'
+
 import Header from '~/components/Header'
 import Footer from '~/components/Footer'
 
-const meta = {
-  title: '千柩堂',
-  description: '柾千樫公式サイト『千柩堂』',
+type LayoutProps = {
+  children?: React.ReactNode
 }
 
-const Layout = (props) => {
-  const { children, meta } = props
-
+const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Head>
-        <title>{meta.title}</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
@@ -25,10 +23,6 @@ const Layout = (props) => {
       <Footer />
     </>
   )
-}
-
-Layout.defaultProps = {
-  meta,
 }
 
 export default Layout

@@ -8,7 +8,7 @@ import styles from '~/components/styles/modules/layouts/Header.module.scss'
 const getNavItems = () => {
   return [
     { name: 'About', path: '/about' },
-    { name: 'Works', path: '/' },
+    { name: 'Works', path: '/works' },
     { name: 'Blog', path: '/blog' },
     { name: 'Contacts', path: 'mailto:masakichikashi@chikyudo.org' },
   ]

@@ -1,17 +1,22 @@
+import { useLayoutEffect } from 'react'
+import { NextSeo } from 'next-seo'
+
 import Layout from '~/components/Layout'
 import SingleBlog from '~/components/SingleBlog'
 import { fetchEntries } from '~/components/general/fetch'
-
-const meta = {
-  title: 'Blog - 千柩堂',
-  description: 'ですくりぷしょん',
-}
+import getMetaDesc from '~/components/general/getMetaDesc'
 
 const SingleBlogPost = (post) => {
   return (
-    <Layout meta={meta}>
-      <SingleBlog post={post} isArchive={false} />
-    </Layout>
+    <>
+      <NextSeo
+        title={`${post.fields.title} - 千柩堂`}
+        description={getMetaDesc(post.fields.metaDescription, post.fields.body)}
+      />
+      <Layout>
+        <SingleBlog post={post} isArchive={false} />
+      </Layout>
+    </>
   )
 }
 

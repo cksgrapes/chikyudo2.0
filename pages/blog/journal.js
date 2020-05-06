@@ -1,28 +1,31 @@
+import { NextSeo } from 'next-seo'
+
 import Layout from '~/components/Layout'
 import SingleBlog from '~/components/SingleBlog'
 import CheckHasPosts from '~/components/CheckHasPosts'
 import CategoryHeading from '~/components/elements/CategoryHeading'
 import { fetchEntries } from '~/components/general/fetch'
 
-const meta = {
-  title: 'Blog - 千柩堂',
-  description: 'ですくりぷしょん',
-}
-
 const Blog = ({ posts }) => {
   return (
-    <Layout meta={meta}>
-      <CategoryHeading
-        name="Journal"
+    <>
+      <NextSeo
+        title="Journal - 千柩堂"
         description="日々つれづれよもやまばなし"
-        type="blog"
       />
-      <CheckHasPosts posts={posts}>
-        {posts.map((post) => (
-          <SingleBlog key={post.fields.slug} post={post} />
-        ))}
-      </CheckHasPosts>
-    </Layout>
+      <Layout>
+        <CategoryHeading
+          name="Journal"
+          description="日々つれづれよもやまばなし"
+          type="blog"
+        />
+        <CheckHasPosts posts={posts}>
+          {posts.map((post) => (
+            <SingleBlog key={post.fields.slug} post={post} />
+          ))}
+        </CheckHasPosts>
+      </Layout>
+    </>
   )
 }
 
@@ -35,8 +38,8 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      posts
-    }
+      posts,
+    },
   }
 }
 

@@ -1,28 +1,28 @@
+import { NextSeo } from 'next-seo'
+
 import Layout from '~/components/Layout'
 import SingleBlog from '~/components/SingleBlog'
 import CheckHasPosts from '~/components/CheckHasPosts'
 import CategoryHeading from '~/components/elements/CategoryHeading'
 import { fetchEntries } from '~/components/general/fetch'
 
-const meta = {
-  title: 'Blog - 千柩堂',
-  description: '',
-}
-
 const Blog = ({ posts }) => {
   return (
-    <Layout meta={meta}>
-      <CategoryHeading
-        name="Blog"
-        description="日々つれづれよもやまばなし"
-        type="blog"
-      />
-      <CheckHasPosts posts={posts}>
-        {posts.map((post) => (
-          <SingleBlog key={post.fields.slug} post={post} />
-        ))}
-      </CheckHasPosts>
-    </Layout>
+    <>
+      <NextSeo title="Blog - 千柩堂" description="しんしんと蓄積される" />
+      <Layout>
+        <CategoryHeading
+          name="Blog"
+          description="しんしんと蓄積される"
+          type="blog"
+        />
+        <CheckHasPosts posts={posts}>
+          {posts.map((post) => (
+            <SingleBlog key={post.fields.slug} post={post} />
+          ))}
+        </CheckHasPosts>
+      </Layout>
+    </>
   )
 }
 

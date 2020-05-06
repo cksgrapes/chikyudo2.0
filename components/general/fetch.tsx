@@ -61,3 +61,32 @@ export function fetchPhotos(limit?: number, fields?: string) {
 
   return medias
 }
+
+/**
+ * 各ピックアップ情報
+ */
+export async function getPickups() {
+  const pickupBook = await fetchEntries({
+    content_type: 'books',
+    order: '-fields.issue',
+    limit: 1,
+  })
+  const pickupGame = await fetchVideos('search', {
+    part: 'id,snippet',
+    channelId: 'UCfN4BiPIfaTzuuX2n1aYyRg',
+    order: 'date',
+    maxResults: 1,
+  })
+  const pickupPhoto = await fetchPhotos(1)
+
+  return {
+    pickupBook: pickupBook[0],
+    pickupGame: pickupGame[0],
+    pickupPhoto: pickupPhoto.data[0],
+  }
+  return {
+    pickupBook: pickupBook[0],
+    pickupGame: pickupGame[0],
+    pickupPhoto: pickupPhoto.data[0],
+  }
+}

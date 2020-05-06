@@ -10,9 +10,9 @@ import generalStyles from '~/components/styles/modules/layouts/General.module.sc
 const getNavItems = (type) => {
   const items = [
     { name: 'Works', path: '/works', type: 'works' },
-    { name: 'Books', path: '/books', type: 'works' },
-    { name: 'Games', path: '/games', type: 'works' },
-    { name: 'Photos', path: '/photos', type: 'works' },
+    { name: 'Books', path: '/works/books', type: 'works' },
+    { name: 'Games', path: '/works/games', type: 'works' },
+    { name: 'Photos', path: '/works/photos', type: 'works' },
     { name: 'Blog', path: '/blog', type: 'blog' },
     { name: 'Tips', path: '/blog/tips', type: 'blog' },
     { name: 'Journal', path: '/blog/journal', type: 'blog' },

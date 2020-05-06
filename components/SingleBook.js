@@ -123,7 +123,7 @@ const SingleBook = (props) => {
         <PostImages images={fields.coverimage} />
         <div className={styles.post_bodyWrap}>
           <h2 className={styles.post_heading}>
-            <Link href={`/books/[slug]`} as={`/books/${fields.slug}`}>
+            <Link href={`/works/books/[slug]`} as={`/works/books/${fields.slug}`}>
               <a>{fields.title}</a>
             </Link>
           </h2>

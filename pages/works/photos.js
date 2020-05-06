@@ -1,13 +1,10 @@
+import { NextSeo } from 'next-seo'
+
 import Layout from '~/components/Layout'
 import SinglePhoto from '~/components/SinglePhoto'
 import CheckHasPosts from '~/components/CheckHasPosts'
 import CategoryHeading from '~/components/elements/CategoryHeading'
 import { fetchPhotos } from '~/components/general/fetch'
-
-const meta = {
-  title: 'Photos - 千柩堂',
-  description: '',
-}
 
 const Photos = ({ posts }) => {
   if (!posts) {
@@ -15,12 +12,19 @@ const Photos = ({ posts }) => {
   }
 
   return (
-    <Layout meta={meta}>
-      <CategoryHeading name="Photos" description="Instagram" type="works" />
-      {posts.map((post) => (
-        <SinglePhoto data={post} key={post.id} />
-      ))}
-    </Layout>
+    <>
+      <NextSeo title="Photos - 千柩堂" description="さまざまの景色" />
+      <Layout>
+        <CategoryHeading
+          name="Photos"
+          description="さまざまの景色"
+          type="works"
+        />
+        {posts.map((post) => (
+          <SinglePhoto data={post} key={post.id} />
+        ))}
+      </Layout>
+    </>
   )
 }
 

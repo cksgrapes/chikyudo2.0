@@ -1,7 +1,3 @@
-import { useEffect } from 'react';
-
-import '~/components/styles/main.scss'
-
 const loadTypekit = () => {
   if (typeof window === 'undefined') return false;
 
@@ -15,12 +11,4 @@ const loadTypekit = () => {
   })(document);
 }
 
-function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    loadTypekit()
-  }, []);
-
-  return <Component {...pageProps} />
-}
-
-export default MyApp
+export default loadTypekit
