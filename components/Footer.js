@@ -24,8 +24,8 @@ const getNavItems = () => {
       path: 'https://www.facebook.com/chikyudo.mc/',
     },
     {
-      name: 'Contacts',
-      path: 'mailto:masakichikashi@chikyudo.org',
+      name: 'Contact',
+      path: '/contact',
     },
     {
       name: 'Privacy Policy',

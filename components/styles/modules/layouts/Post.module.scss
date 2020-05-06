@@ -83,8 +83,8 @@
   }
 
   .post_tags {
-    justify-content: flex-start;
-    font-family: var.$font-gothic;
+    justify-content: flex-start !important;
+    font-family: var.$font-gothic !important;
   }
 
   .post_summary {

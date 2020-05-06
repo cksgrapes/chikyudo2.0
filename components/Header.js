@@ -10,7 +10,7 @@ const getNavItems = () => {
     { name: 'About', path: '/about' },
     { name: 'Works', path: '/works' },
     { name: 'Blog', path: '/blog' },
-    { name: 'Contacts', path: 'mailto:masakichikashi@chikyudo.org' },
+    { name: 'Contact', path: '/contact' },
   ]
 }
 

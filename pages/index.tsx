@@ -15,7 +15,7 @@ const Home: React.FC<HomeProps> = ({ pickupBook, pickupGame, pickupPhoto }) => {
   return (
     <>
       <Layout>
-        <Pickups book={pickupBook} game={pickupGame} photo={pickupPhoto} />
+        <Pickups book={ pickupBook } game={ pickupGame } photo={ pickupPhoto } />
       </Layout>
     </>
   )

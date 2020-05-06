@@ -110,3 +110,30 @@
       max-width: 700px;
   }
 }
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var.$font-ten-mincho;
+  width: 200px;
+  height: 40px;
+  margin-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 2px;
+  background-color: #555;
+  color: var.$color-white;
+  font-size: 1.4rem;
+  @include mixins.media() {
+    font-size: 1.6rem;
+  }
+}
+
+.button-line {
+  background-color: transparent;
+  //background-color: #eee;
+  border: 1px solid #eee;
+  color: inherit;
+}
+

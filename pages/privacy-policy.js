@@ -42,7 +42,7 @@ const PrivacyPolicy = () => (
         <h3>個人情報の追加・変更・訂正など</h3>
         <p>
           個人情報の追加・変更・訂正などをご希望される場合には、
-          <a href="https://chikyudo.org/contacts/">お問い合わせフォーム</a>
+          <Link href="/contact"><a>お問い合わせフォーム</a></Link>
           よりご連絡ください。ご本人であることを確認のうえ、速やかに対応させていただきます。
         </p>
         <h2>Cookieについて</h2>
@@ -69,35 +69,6 @@ const PrivacyPolicy = () => (
           </a>
           」をご確認ください。
         </p>
-        <h2>reCAPTCHAについて</h2>
-        <p>
-          当サイトは、インターネット上のフォームへ投稿されるスパムなどからサイト守るため、Google
-          Inc.（グーグル）が提供している reCAPTCHA
-          サービスを採用しています。このサービスは投稿者が人間なのかロボットなのかを判定するもので、GoogleはIPアドレスの取得を含むその他のデータをこのサービスのために収集します。またこの目的のため、入力されたデータはGoogleによって利用されます。ただし、EUまたは欧州経済領域の場合、IPアドレスはあらかじめ匿名化されます。例外的なケースとして、USではIPアドレスがGoogleに送信されたあとに匿名化されます。
-          <br />{' '}
-          Googleはお客様によるサイトの利用を評価するため、サイトの運営者に代わって、この情報を利用します。
-          <br />{' '}
-          お客様のブラウザからreCAPTCHAによって収集されたIPアドレスとGoogleが保有する他のデータを関連付けることはありません。
-          <br /> このデータ収集はGoogleのデータ保護規則のもと行われています。
-          <br />{' '}
-          Googleプライバシーポリシーの詳細については以下のURLにてご確認ください。
-        </p>
-        <p>
-          {' '}
-          <a
-            href="https://www.google.com/intl/ja/policies/privacy/"
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label=" (新しいタブで開く)"
-          >
-            https://www.google.com/intl/ja/policies/privacy/
-          </a>
-        </p>
-        <p>
-          {' '}
-          reCAPTCHA
-          サービスを利用することによって、上述したGoogleの目的およびデータ収集に同意したことになります。
-        </p>
         <h2>Amazonアソシエイトについて</h2>
         <p>
           「千柩堂」は、Amazon.co.jpを宣伝しリンクすることによってサイトが紹介料を獲得できる手段を提供することを目的に設定されたアフィリエイトプログラムである、Amazonアソシエイト・プログラムの参加者です。
@@ -108,7 +79,7 @@ const PrivacyPolicy = () => (
         </p>
         <p>
           もしも掲載情報に問題が見受けられた場合は、各権利所有者ご本人より運営者宛にご連絡ください。ご本人であることを確認のうえ、速やかに対応させていただきます。ご連絡は
-          <a href="https://chikyudo.org/contacts/">お問い合わせフォーム</a>
+          <Link href="/contact"><a>お問い合わせフォーム</a></Link>
           よりお願いいたします。
         </p>
         <h2>免責事項</h2>
@@ -125,13 +96,13 @@ const PrivacyPolicy = () => (
           サイトURL：<a href="https://chikyudo.org">https://chikyudo.org</a>
           <br />
           お問い合わせは
-          <a href="https://chikyudo.org/contacts/">こちらのフォーム</a>
+          <Link href="/contact"><a>こちらのフォーム</a></Link>
           よりお願いいたします。
         </p>
         <p>
           初出掲載：2019年4月4日
           <br />
-          最終更新：2019年4月4日
+          最終更新：2020年5月7日
         </p>
       </Page>
     </Layout>
