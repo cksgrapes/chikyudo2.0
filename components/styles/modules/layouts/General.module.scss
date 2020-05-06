@@ -5,22 +5,28 @@
 .pageHeading {
   position: relative;
   padding: 5em 2em 3em;
-  .post_heading {
+  & h1 {
     display: inline-block;
     cursor: pointer;
-    i {
+    svg {
       transition: transform .2s ease-out;
+      font-size: 24px;
     }
-  }
-  &.is-open .post_heading i {
-    transform: rotate(180deg);
   }
   @include mixins.media() {
     padding: 7em 0;
-    .post_heading:hover i {
+    & h1:hover svg {
       transform: translateY(10%);
     }
-    &.is-open .post_heading:hover i {
+  }
+}
+
+.openedCategoryHeading{
+  &  svg {
+    transform: rotate(180deg);
+  }
+  @include mixins.media() {
+    &:hover svg {
       transform: rotate(180deg) translateY(10%);
     }
   }
@@ -86,3 +92,48 @@
   text-align: center;
   font-size: 2.6rem;
 }
+
+.pickup {
+  text-align: center;
+  padding: 3em 2em 5em;
+
+  @include mixins.media() {
+      max-width: 500px;
+      margin-right: auto;
+      margin-left: auto;
+      padding: 3em 0 7em;
+  }
+}
+
+.pickup-game {
+  @include mixins.media() {
+      max-width: 700px;
+  }
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var.$font-ten-mincho;
+  width: 200px;
+  height: 40px;
+  margin-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 2px;
+  background-color: #555;
+  color: var.$color-white;
+  font-size: 1.4rem;
+  @include mixins.media() {
+    font-size: 1.6rem;
+  }
+}
+
+.button-line {
+  background-color: transparent;
+  //background-color: #eee;
+  border: 1px solid #eee;
+  color: inherit;
+}
+
