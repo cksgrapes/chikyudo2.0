@@ -30,7 +30,7 @@ const BookPanel = ({ data }) => {
         </a>
       </Link>
       <div className={postStyles.post_moreWrap}>
-        <Link href="/books">
+        <Link href="/works/books">
           <a className={postStyles.post_more}>
             All Books
             <ChevronRight />
