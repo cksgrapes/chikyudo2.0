@@ -6,6 +6,7 @@ import Layout from '~/components/Layout'
 import Page from '~/components/Page'
 import ExLink from '~/components/elements/ExLink'
 
+import styles from '~/components/styles/modules/components/Form.module.scss'
 import generalStyles from '~/components/styles/modules/layouts/General.module.scss'
 
 const Contact = () => {
@@ -23,12 +24,12 @@ const Contact = () => {
             action="https://form.run/api/v1/r/lyxlte10jq1mvw070axhbny7"
             method="post"
           >
-            <div>
+            <div className={styles.formParts}>
               <label>お名前 *</label>
               <input name="お名前" type="text" data-formrun-required />
             </div>
 
-            <div>
+            <div className={styles.formParts}>
               <label>メールアドレス *</label>
               <input
                 name="メールアドレス"
@@ -36,28 +37,28 @@ const Contact = () => {
                 data-formrun-type="email"
                 data-formrun-required
               />
-              <div data-formrun-show-if-error="メールアドレス">
+              <div data-formrun-show-if-error="メールアドレス" className={styles.formError}>
                 メールアドレスを正しく入力してください
               </div>
             </div>
 
-            <div>
+            <div className={styles.formParts}>
               <label>件名</label>
               <input name="件名" type="text" />
             </div>
 
-            <div>
+            <div className={styles.formParts}>
               <label>メッセージ本文 *</label>
               <textarea name="メッセージ本文" data-formrun-required></textarea>
-              <div data-formrun-show-if-error="メッセージ本文">
+              <div data-formrun-show-if-error="メッセージ本文" className={styles.formError}>
                 メッセージ本文を入力してください
               </div>
             </div>
 
-            <div
+            {/* <div
               className="g-recaptcha"
               data-sitekey="6Ld5XZwUAAAAAPuETbqB_sn1QCmsvQQ-g-oWnUMC"
-            ></div>
+            ></div> */}
 
             <button
               className={generalStyles.button}

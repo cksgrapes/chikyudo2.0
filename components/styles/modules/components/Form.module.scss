@@ -1,0 +1,19 @@
+@use '../../abstracts/variables' as var;
+@use '../../abstracts/mixins';
+
+.formParts {
+  & + & {
+    margin-top: 1.5em;
+  }
+}
+
+.formError {
+  margin-top: .5em;
+  font-family: var.$font-gothic;
+  font-size: 1rem;
+  color: red;
+
+  @include mixins.media() {
+    font-size: 1.2rem;
+  }
+}

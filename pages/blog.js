@@ -31,6 +31,7 @@ export async function getStaticProps({ params }) {
     content_type: 'blog',
     order: '-sys.createdAt',
   })
+
   return {
     props: {
       posts,
