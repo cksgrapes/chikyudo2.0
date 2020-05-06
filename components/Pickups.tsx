@@ -55,7 +55,7 @@ const GamePanel = ({ data }) => {
         />
       </a>
       <div className={postStyles.post_moreWrap}>
-        <Link href="/games">
+        <Link href="/works/games">
           <a className={postStyles.post_more}>
             All Games
             <ChevronRight />
@@ -73,7 +73,7 @@ const PhotoPanel = ({ data }) => {
         <img src={data.media_url} alt="" />
       </a>
       <div className={postStyles.post_moreWrap}>
-        <Link href="/photos">
+        <Link href="/works/photos">
           <a className={postStyles.post_more}>
             All Photos
             <ChevronRight />
