@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import classNames from 'classnames'
 import dayjs from 'dayjs'
 
@@ -22,20 +21,21 @@ class GameTemplate extends React.Component {
             styles['post-photo']
           )}
         >
-          <div className="post_body">
-            <p>
-              <img src={ data.media_url } alt="" />
-            </p>
-            {/* <p>{snippet.description}</p> */}
+          <div className={styles.post_body}>
+            <figure>
+              <a href={data.permalink} target="_blank" rel="noopener">
+                <img src={data.media_url} alt="" />
+              </a>
+            </figure>
           </div>
-          <div className={styles.post_data}>
-          <h2 className={styles.post_heading}>
-              <a href={ data.permalink } target="_blank" rel="noopener">{data.caption}</a>
-            </h2>
-            <p className={styles.post_date}>
-              {dayjs(data.timestamp).format('YYYY.M.D ddd HH:mm')}
-            </p>
-          </div>
+          <a href={data.permalink} target="_blank" rel="noopener">
+            <div className={styles.post_data}>
+              <h2 className={styles.post_summary}>{data.caption}</h2>
+              <p className={styles.post_date}>
+                {dayjs(data.timestamp).format('YYYY.M.D ddd HH:mm')}
+              </p>
+            </div>
+          </a>
         </section>
       </>
     )

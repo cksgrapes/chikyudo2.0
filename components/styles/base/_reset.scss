@@ -1,4 +1,4 @@
-@use '../abstracts/variables';
+@use '../abstracts/variables' as var;
 @use '../abstracts/mixins';
 
 // ========================================
@@ -50,21 +50,32 @@ html {
 
 body {
   height: 100%;
+  font-size: 1.4rem;
   line-height: 2;
-  font-size: 1.8rem;
-  letter-spacing: .05em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: variables.$color-black;
-  font-family: variables.$font-gothic;
+  color: var.$color-black;
+  font-family: var.$font-mincho;
+  letter-spacing: .2em;
+  font-feature-settings : "pkna";
+  @include mixins.media() {
+    font-size: 1.8rem;
+  }
 }
 
-input,
-button,
-textarea {
-  outline: transparent;
+h1, h2, h3, h4, h5, h6 {
+  font-family: ten-mincho, serif;
+  font-weight: normal;
 }
 
 a {
-  word-break: break-all;
+  color: var.$color-black;
+}
+
+figure {
+  margin: 0;
+}
+
+figcaption {
+  display: none;
 }

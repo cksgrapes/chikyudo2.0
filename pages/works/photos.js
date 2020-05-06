@@ -1,26 +1,30 @@
+import { NextSeo } from 'next-seo'
+
 import Layout from '~/components/Layout'
 import SinglePhoto from '~/components/SinglePhoto'
 import CheckHasPosts from '~/components/CheckHasPosts'
 import CategoryHeading from '~/components/elements/CategoryHeading'
 import { fetchPhotos } from '~/components/general/fetch'
 
-const meta = {
-  title: 'Photos - 千柩堂',
-  description: 'ですくりぷしょん',
-}
-
-function Photos ({ posts }) {
+const Photos = ({ posts }) => {
   if (!posts) {
-    return null;
+    return null
   }
 
   return (
-    <Layout meta={meta}>
-      <CategoryHeading name="Photos" description="Instagram" />
-      {posts.map((post) => (
+    <>
+      <NextSeo title="Photos - 千柩堂" description="さまざまの景色" />
+      <Layout>
+        <CategoryHeading
+          name="Photos"
+          description="さまざまの景色"
+          type="works"
+        />
+        {posts.map((post) => (
           <SinglePhoto data={post} key={post.id} />
         ))}
-    </Layout>
+      </Layout>
+    </>
   )
 }
 
@@ -29,8 +33,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      posts: posts.data
-    }
+      posts: posts.data,
+    },
   }
 }
 

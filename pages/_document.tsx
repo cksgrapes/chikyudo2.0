@@ -1,4 +1,9 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import TagManager from 'react-gtm-module'
+
+const tagManagerArgs = {
+  gtmId: 'GTM-K6JXTHX'
+}
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -6,11 +11,18 @@ class MyDocument extends Document {
     return { ...initialProps }
   }
 
+  componentDidMount() {
+    TagManager.initialize(tagManagerArgs)
+  }
+
   render() {
     return (
       <Html lang="ja">
         <Head>
-        <link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP|Sawarabi+Mincho" rel="stylesheet" />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+          />
         </Head>
         <body>
           <Main />
