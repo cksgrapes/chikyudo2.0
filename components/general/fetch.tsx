@@ -81,12 +81,8 @@ export async function getPickups() {
 
   return {
     pickupBook: pickupBook[0],
-    pickupGame: pickupGame[0],
-    pickupPhoto: pickupPhoto.data[0],
-  }
-  return {
-    pickupBook: pickupBook[0],
-    pickupGame: pickupGame[0],
+    // pickupGame: pickupGame[0],
+    pickupGame: {},
     pickupPhoto: pickupPhoto.data[0],
   }
 }

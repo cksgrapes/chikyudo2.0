@@ -92,10 +92,9 @@ type PickupsProps = {
 }
 
 const Pickups: React.FC<PickupsProps> = ({ book, game, photo, page }) => {
-
   useEffect(() => {
-    resetIdCounter();
-  }, []);
+    resetIdCounter()
+  }, [])
 
   return (
     <Tabs

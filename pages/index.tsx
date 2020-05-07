@@ -1,21 +1,20 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-
 import Layout from '~/components/Layout'
 import Pickups from '~/components/Pickups'
 import { getPickups } from '~/components/general/fetch'
 
 type HomeProps = Partial<{
-  pickupBook: React.FC
-  pickupGame: React.FC
-  pickupPhoto: React.FC
+  pickupBook: object
+  pickupGame: object
+  pickupPhoto: object
 }>
 
-const Home: React.FC<HomeProps> = ({ pickupBook, pickupGame, pickupPhoto }) => {
+const Home = ({ pickupBook, pickupGame, pickupPhoto }: HomeProps) => {
   return (
     <>
       <Layout>
-        <Pickups book={ pickupBook } game={ pickupGame } photo={ pickupPhoto } />
+        {/* <Pickups book={ pickupBook } game={ pickupGame } photo={ pickupPhoto } /> */}
       </Layout>
     </>
   )
