@@ -3,9 +3,7 @@ import unified from 'unified'
 import parse from 'remark-parse'
 import remark2react from 'remark-react'
 import { ChevronRight } from '@material-ui/icons'
-
-import { MyParagraph, MyImg } from '~/components/elements/RemarkComponents.js'
-
+import { MyParagraph, MyImg } from '~/components/elements/RemarkComponents'
 import styles from '~/components/styles/modules/layouts/Post.module.scss'
 
 const remark2ReactOptions = {
@@ -15,7 +13,7 @@ const remark2ReactOptions = {
   },
 }
 
-const removeStartNewLine = (content) => {
+const removeStartNewLine = (content: string) => {
   if (!content.startsWith('\n')) {
     return content
   }
@@ -23,20 +21,35 @@ const removeStartNewLine = (content) => {
   return removeStartNewLine(content)
 }
 
-const SplitedContents = ({ content, separator, removeMore, linkData }) => {
-  const arrContent = content.split(separator)
-  const splitedContent = {
-    excerpt: arrContent[0],
-    more: removeStartNewLine(arrContent[1]),
+type SplitedContentsProps = {
+  content: string
+  separator: string
+  removeMore?: boolean
+  linkData?: {
+    href: string
+    as: string
   }
+}
+
+const SplitedContents = ({
+  content,
+  separator,
+  removeMore = false,
+  linkData,
+}: SplitedContentsProps) => {
+  const arrContent = content.split(separator)
+  const [excerpt, more] = [arrContent[0], removeStartNewLine(arrContent[1])]
   const srcExcerpt = unified()
     .use(parse)
     .use(remark2react, remark2ReactOptions)
-    .processSync(splitedContent.excerpt).result
+    // @ts-ignore
+    .processSync(excerpt).result
+
   const srcMore = unified()
     .use(parse)
     .use(remark2react, remark2ReactOptions)
-    .processSync(splitedContent.more).result
+    // @ts-ignore
+    .processSync(more).result
 
   if (removeMore) {
     return (
@@ -62,10 +75,17 @@ const SplitedContents = ({ content, separator, removeMore, linkData }) => {
   )
 }
 
-const Markdown = (props) => {
-  const { content, isArchive, linkData } = props
+type MarkdownProps = {
+  content: string
+  isArchive?: boolean
+  linkData?: {
+    href: string
+    as: string
+  }
+}
 
-  if (!content) return null
+const Markdown = ({ content, isArchive, linkData }: MarkdownProps) => {
+  if (content == null) return null
 
   const separator = '[[more]]'
 
@@ -85,10 +105,13 @@ const Markdown = (props) => {
     }
   }
 
-  return unified()
-    .use(parse)
-    .use(remark2react, remark2ReactOptions)
-    .processSync(content).result
+  return (
+    unified()
+      .use(parse)
+      .use(remark2react, remark2ReactOptions)
+      // @ts-ignore
+      .processSync(content).result
+  )
 }
 
 export default Markdown
