@@ -12,28 +12,28 @@ const BookData = (props) => {
   const { fields } = props
   let data = []
 
-  if (typeof fields.price !== 'undefined') {
+  if (fields.price != null) {
     data.push({
       label: '価格',
       value: `${fields.price.toLocaleString()}円（税込）`,
     })
   }
 
-  if (typeof fields.bookformat !== 'undefined') {
+  if (fields.bookformat != null) {
     data.push({
       label: '判型',
       value: `${fields.bookformat}型`,
     })
   }
 
-  if (typeof fields.pagenum !== 'undefined') {
+  if (fields.pagenum != null) {
     data.push({
       label: '頁数',
       value: `${fields.pagenum}頁`,
     })
   }
 
-  if (typeof fields.issue !== 'undefined') {
+  if (fields.issue != null) {
     data.push({
       label: '発売日',
       value: dayjs(fields.issue).format('YYYY年M月D日'),
@@ -54,7 +54,7 @@ const BookData = (props) => {
 
 const PostMoreLink = (props) => {
   const { title, path } = props
-  if (typeof path === 'undefined') return null
+  if (path != null) return null
 
   let _path = path
   if (path.indexOf('http') === -1) {
@@ -88,7 +88,7 @@ const PostMoreLink = (props) => {
 
 const PostImages = (props) => {
   const { images } = props
-  if (typeof images === 'undefined') return null
+  if (images == null) return null
 
   return (
     <div className={styles.post_cover}>
@@ -123,7 +123,10 @@ const SingleBook = (props) => {
         <PostImages images={fields.coverimage} />
         <div className={styles.post_bodyWrap}>
           <h2 className={styles.post_heading}>
-            <Link href={`/works/books/[slug]`} as={`/works/books/${fields.slug}`}>
+            <Link
+              href={`/works/books/[slug]`}
+              as={`/works/books/${fields.slug}`}
+            >
               <a>{fields.title}</a>
             </Link>
           </h2>

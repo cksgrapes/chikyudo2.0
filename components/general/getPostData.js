@@ -6,7 +6,7 @@ const getPostData = (post) => {
   return {
     category: () => {
       const { category } = fields
-      if (typeof category === 'undefined') return false
+      if (category == null) return false
 
       return [
         {
@@ -17,9 +17,7 @@ const getPostData = (post) => {
     },
     publishedDate: (format = 'YYYY.M.D ddd HH:mm') => {
       const date =
-        typeof fields.publishedDate !== 'undefined'
-          ? fields.publishedDate
-          : sys.createdAt
+        fields.publishedDate != null ? fields.publishedDate : sys.createdAt
       return dayjs(date).format(format)
     },
   }

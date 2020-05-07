@@ -8,7 +8,7 @@ const client = require('contentful').createClient({
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 })
 
-export async function fetchEntries(param) {
+export async function fetchEntries(param: any) {
   const entries = await client.getEntries(param)
   if (entries.items) return entries.items
   console.log(`Error getting Entries for ${entries.contentType.name}.`)
@@ -20,7 +20,19 @@ export async function fetchEntries(param) {
  * @param {*} resource
  * @param {*} params
  */
-export async function fetchVideos(resource, params) {
+
+interface FetchVideosParams {
+  key: string
+  part: string
+  channelId: string
+  order: string
+  maxResults: number
+}
+
+export async function fetchVideos(
+  resource: string,
+  params: Partial<FetchVideosParams>
+) {
   const API_URL = `https://www.googleapis.com/youtube/v3/${resource}`
   params.key = process.env.YOUTUBE_API_KEY
 
@@ -45,7 +57,7 @@ export function fetchPhotos(limit?: number, fields?: string) {
   const IG_BUSINESS_ACCOUNT = process.env.IG_BUSINESS_ACCOUNT
   const IG_ACCESS_TOKEN = process.env.IG_ACCESS_TOKEN
   const API_URL = `https://graph.facebook.com/v6.0/`
-  const paramLimit = `&limit=${limit}` || null
+  const paramLimit = limit ? `&limit=${limit}` : null
   fields = fields || 'id,caption,media_url,permalink,media_type,timestamp'
 
   const ALL_POSTS_URL = `${API_URL}${IG_BUSINESS_ACCOUNT}/media?fields=${fields}${paramLimit}&access_token=${IG_ACCESS_TOKEN}`
@@ -67,22 +79,24 @@ export function fetchPhotos(limit?: number, fields?: string) {
  */
 export async function getPickups() {
   const pickupBook = await fetchEntries({
+    // eslint-disable-next-line @typescript-eslint/camelcase
     content_type: 'books',
     order: '-fields.issue',
     limit: 1,
   })
+
   const pickupGame = await fetchVideos('search', {
     part: 'id,snippet',
     channelId: 'UCfN4BiPIfaTzuuX2n1aYyRg',
     order: 'date',
     maxResults: 1,
   })
+
   const pickupPhoto = await fetchPhotos(1)
 
   return {
-    pickupBook: pickupBook[0],
-    // pickupGame: pickupGame[0],
-    pickupGame: {},
-    pickupPhoto: pickupPhoto.data[0],
+    pickupBook: pickupBook ? pickupBook[0] : null,
+    pickupGame: pickupGame ? pickupGame[0] : null,
+    pickupPhoto: pickupPhoto ? pickupPhoto.data[0] : null,
   }
 }

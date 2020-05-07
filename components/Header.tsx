@@ -1,23 +1,20 @@
-import { useState } from 'react'
+import { useState, ReactElement } from 'react'
 import Link from 'next/link'
 import { Menu } from '@material-ui/icons'
-
 import CategoryList from '~/components/elements/CategoryList'
 import styles from '~/components/styles/modules/layouts/Header.module.scss'
 
-const getNavItems = () => {
-  return [
-    { name: 'About', path: '/about' },
-    { name: 'Works', path: '/works' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Contact', path: '/contact' },
-  ]
-}
+const getNavItems: { name: string; path: string }[] = [
+  { name: 'About', path: '/about' },
+  { name: 'Works', path: '/works' },
+  { name: 'Blog', path: '/blog' },
+  { name: 'Contact', path: '/contact' },
+]
 
-const Header = () => {
+const Header: React.FC = (): ReactElement => {
   const [isOpen, setOpen] = useState(false)
 
-  const toggleNav = () => {
+  const toggleNav = (): void => {
     setOpen(!isOpen)
   }
 
@@ -42,7 +39,7 @@ const Header = () => {
         </button>
       </div>
       <CategoryList
-        items={getNavItems()}
+        items={getNavItems}
         addClass={[styles.categoryListWrap]}
         childAddClass={[
           styles.categoryList,

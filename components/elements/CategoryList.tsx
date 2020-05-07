@@ -1,15 +1,24 @@
 import classNames from 'classnames'
-
 import ExLink from '~/components/elements/ExLink'
-
 import styles from '~/components/styles/modules/components/CategoryList.module.scss'
 
-const CategoryList = (props) => {
-  const { items, openState } = props
-  const addClass = props.addClass || []
-  const childAddClass = props.childAddClass || []
+type CategoryListProps = {
+  items: {
+    name: string
+    path: string
+  }[]
+  openState: boolean
+  addClass?: (object | string)[]
+  childAddClass?: (object | string)[] //TODO:これあってる？
+}
 
-  return (
+const CategoryList = ({
+  items,
+  openState,
+  addClass,
+  childAddClass,
+}: CategoryListProps) => {
+  return items ? (
     <nav className={classNames(styles.categoryListWrap, ...addClass)}>
       <ul
         className={classNames(
@@ -19,11 +28,13 @@ const CategoryList = (props) => {
         )}
       >
         {items.map((item) => (
-          <li key={item.name}>{ExLink(item)}</li>
+          <li key={item.name}>
+            <ExLink item={item} />
+          </li>
         ))}
       </ul>
     </nav>
-  )
+  ) : null
 }
 
 export default CategoryList

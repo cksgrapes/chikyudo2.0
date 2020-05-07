@@ -11,7 +11,7 @@ import generalStyles from '~/components/styles/modules/layouts/General.module.sc
 const SingleBlog = ({ post, isArchive }) => {
   const { fields } = post
   const postData = getPostData(post)
-  const getIsArchive = typeof isArchive === 'undefined'
+  const getIsArchive = isArchive != null
   const linkData = {
     href: `/blog/[slug]`,
     as: `/blog/${fields.slug}`,
