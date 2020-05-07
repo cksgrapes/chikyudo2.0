@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import Link from 'next/link'
 import { ChevronRight } from '@material-ui/icons'
 import classNames from 'classnames'
@@ -116,9 +115,7 @@ type PickupsProps = {
   page?: boolean
 }
 const Pickups = ({ book, game, photo, page }: PickupsProps) => {
-  useEffect(() => {
-    resetIdCounter()
-  }, [])
+  resetIdCounter()
 
   return (
     <Tabs
