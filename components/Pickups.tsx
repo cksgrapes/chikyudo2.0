@@ -6,9 +6,7 @@ import styles from '~/components/styles/modules/layouts/General.module.scss'
 import postStyles from '~/components/styles/modules/layouts/Post.module.scss'
 import tabStyles from '~/components/styles/modules/components/Tab.module.scss'
 
-const NoData = () => {
-  return <p>Sorry. No Data : (</p>
-}
+const NoData = () => <p>Sorry. No Data : (</p>
 
 type AllPostsLinkProps = {
   text: string

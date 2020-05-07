@@ -22,9 +22,9 @@ const Ad = () => {
         <style jsx>{`
           .adsbygoogle {
             display: block;
-            text-align:center;
+            text-align: center;
           }
-      `}</style>
+        `}</style>
       </>
     )
     setAd(adTag)

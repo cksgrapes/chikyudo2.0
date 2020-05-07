@@ -74,8 +74,10 @@ export function fetchPhotos(limit?: number, fields?: string) {
   return medias
 }
 
+//========================================
+
 /**
- * 各ピックアップ情報
+ * トップページ用ピックアップ情報
  */
 export async function getPickups() {
   const pickupBook = await fetchEntries({
@@ -95,8 +97,162 @@ export async function getPickups() {
   const pickupPhoto = await fetchPhotos(1)
 
   return {
-    pickupBook: pickupBook ? pickupBook[0] : null,
-    pickupGame: pickupGame ? pickupGame[0] : null,
-    pickupPhoto: pickupPhoto ? pickupPhoto.data[0] : null,
+    pickupBook: pickupBook
+      ? {
+          title: pickupBook[0].fields.title,
+          slug: pickupBook[0].fields.slug,
+          coverUrl: pickupBook[0].fields.coverimage[0].fields.file.url,
+        }
+      : null,
+    pickupGame: pickupGame
+      ? {
+          id: pickupGame[0].id.videoId,
+        }
+      : null,
+    pickupPhoto: pickupPhoto
+      ? {
+          permalink: pickupPhoto.data[0].permalink,
+          // eslint-disable-next-line @typescript-eslint/camelcase
+          media_url: pickupPhoto.data[0].media_url,
+        }
+      : null,
   }
+}
+
+/**
+ * getBlogTypePaths
+ * @param type
+ */
+export async function getContentPaths(type: string, path: string) {
+  const posts: object[] = await fetchEntries({
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    content_type: type,
+  })
+
+  const paths: string[] = posts.map(
+    (post: { fields: { slug: string } }) => `${path}/${post.fields.slug}`
+  )
+
+  return paths
+}
+
+/**
+ * Book Entries
+ */
+export async function getBlogEntries(
+  pageType: 'all' | 'single' | 'category' = 'all',
+  slug?: string
+) {
+  const params = {
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    content_type: 'blog',
+    order: '-sys.createdAt',
+  }
+
+  const appendParams = {
+    all: () => {
+      return null
+    },
+    single: () => {
+      params['fields.slug'] = slug
+      return null
+    },
+    category: () => {
+      params['fields.category.sys.contentType.sys.id'] = 'blogCategory'
+      params['fields.category.fields.slug'] = slug
+      return null
+    },
+  }
+  appendParams[pageType]()
+
+  let posts = await fetchEntries(params)
+
+  posts = posts
+    ? posts.map(({ sys, fields }: any) => {
+        const { category } = fields
+        return {
+          title: fields.title,
+          body: fields.body,
+          slug: fields.slug,
+          date: {
+            publishedAt: fields.publishedDate,
+            createdAt: sys.createdAt,
+          },
+          category: {
+            title: category.fields.title,
+            slug: category.fields.slug,
+          },
+        }
+      })
+    : null
+
+  return pageType === 'single' ? posts[0] : posts
+}
+
+/**
+ * 書影情報
+ * @param coverimage
+ */
+const getImagesData = (coverimage: any) => {
+  let images:
+    | {
+        id: string
+        fileUrl: string
+      }[]
+    | null
+
+  if (coverimage != null) {
+    images = coverimage.map((image: any) => {
+      return {
+        id: image.sys.id,
+        fileUrl: image.fields.file.url,
+      }
+    })
+  } else {
+    images = null
+  }
+
+  return images
+}
+
+/**
+ * Book Entries
+ */
+export async function getBookEntries(isSingle = false, slug?: string) {
+  const params = {
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    content_type: 'books',
+    order: '-fields.issue',
+  }
+
+  if (isSingle) {
+    params['fields.slug'] = slug
+  }
+
+  let posts = await fetchEntries(params)
+
+  posts = posts
+    ? posts.map(({ fields }: any) => {
+        const { sample, coverimage } = fields
+
+        return {
+          title: fields.title,
+          slug: fields.slug,
+          coverimage: getImagesData(coverimage),
+          credit: fields.credit,
+          intro: fields.intro,
+          bookData: {
+            price: fields.price,
+            bookFormat: fields.bookformat,
+            pageNum: fields.pagenum,
+            issue: fields.issue,
+          },
+          sample: sample ? sample.fields.file.url : null,
+          booth: fields.booth,
+          metaDescription: fields.metaDescription,
+        }
+      })
+    : null
+
+  return isSingle ? posts[0] : posts
 }

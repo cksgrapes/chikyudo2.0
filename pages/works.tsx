@@ -1,24 +1,27 @@
 import { GetStaticProps } from 'next'
-
 import React from 'react'
 import { NextSeo } from 'next-seo'
-
 import Layout from '~/components/Layout'
 import Pickups from '~/components/Pickups'
 import CategoryHeading from '~/components/elements/CategoryHeading'
 import { getPickups } from '~/components/general/fetch'
 
-type WorksProps = Partial<{
-  pickupBook: React.FC
-  pickupGame: React.FC
-  pickupPhoto: React.FC
-}>
+type WorksProps = {
+  pickupBook: {
+    title: string
+    slug: string
+    coverUrl: string
+  } | null
+  pickupGame: {
+    id: string
+  } | null
+  pickupPhoto: {
+    permalink: string
+    media_url: string
+  } | null
+}
 
-const Works: React.FC<WorksProps> = ({
-  pickupBook,
-  pickupGame,
-  pickupPhoto,
-}) => {
+const Works = ({ pickupBook, pickupGame, pickupPhoto }: WorksProps) => {
   return (
     <>
       <NextSeo title="Works - 千柩堂" />
@@ -31,9 +34,13 @@ const Works: React.FC<WorksProps> = ({
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const props = await getPickups()
+  const { pickupBook, pickupGame, pickupPhoto } = await getPickups()
   return {
-    props,
+    props: {
+      pickupBook,
+      pickupGame,
+      pickupPhoto,
+    },
   }
 }
 

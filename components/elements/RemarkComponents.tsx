@@ -1,5 +1,4 @@
-export const MyParagraph = (props) => {
-  const { children } = props
+export const MyParagraph = ({ children }: any) => {
   let src = <p>{children}</p>
 
   //画像時
@@ -14,12 +13,11 @@ export const MyParagraph = (props) => {
   return src
 }
 
-export const MyImg = (props) => {
-  const { src, alt } = props
+export const MyImg = ({ src, alt }: any) => {
   let figcaption = null
 
   if (alt.includes('@@')) {
-    figcaption = <figcaption>{alt.replace('@@','')}</figcaption>
+    figcaption = <figcaption>{alt.replace('@@', '')}</figcaption>
   }
 
   return (

@@ -15,8 +15,8 @@ type CategoryListProps = {
 const CategoryList = ({
   items,
   openState,
-  addClass,
-  childAddClass,
+  addClass = [],
+  childAddClass = [],
 }: CategoryListProps) => {
   return items ? (
     <nav className={classNames(styles.categoryListWrap, ...addClass)}>

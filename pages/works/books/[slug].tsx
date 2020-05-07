@@ -1,19 +1,30 @@
 import React from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { NextSeo } from 'next-seo'
-
 import Layout from '~/components/Layout'
 import SingleBook from '~/components/SingleBook'
-import { fetchEntries } from '~/components/general/fetch'
+import { getBookEntries, getContentPaths } from '~/components/general/fetch'
 import getMetaDesc from '~/components/general/getMetaDesc'
 
 type SingleBookPostProps = {
   post: {
-    fields: {
-      title: string
-      intro: string
-      metaDescription: string
+    title: string
+    slug: string
+    coverimage: {
+      id: string
+      fileUrl: string
+    }[]
+    credit: string
+    intro: string
+    bookData: {
+      price: number
+      bookFormat: string
+      pageNum: number
+      issue: Date
     }
+    sample: string
+    booth: string
+    metaDescription: string
   }
 }
 
@@ -21,8 +32,8 @@ const SingleBookPost = ({ post }: SingleBookPostProps) => {
   return (
     <>
       <NextSeo
-        title={`${post.fields.title} - 千柩堂`}
-        description={getMetaDesc(post.fields.metaDescription, post.fields.intro)}
+        title={`${post.title} - 千柩堂`}
+        description={getMetaDesc(post.metaDescription, post.intro)}
       />
       <Layout>
         <SingleBook post={post} />
@@ -32,25 +43,15 @@ const SingleBookPost = ({ post }: SingleBookPostProps) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts: object[] = await fetchEntries({
-    content_type: 'books',
-  })
-
-  const paths: string[] = posts.map(
-    (post: { fields: { slug: string } }) => `/works/books/${post.fields.slug}`
-  )
+  const paths = await getContentPaths('books', '/works/books')
   return { paths, fallback: false }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const posts: object[] = await fetchEntries({
-    content_type: 'books',
-    'fields.slug': params.slug,
-  })
-
+export const getStaticProps: GetStaticProps = async ({ params }: any) => {
+  const post = await getBookEntries(true, params.slug)
   return {
     props: {
-      post: posts[0],
+      post: post,
     },
   }
 }
