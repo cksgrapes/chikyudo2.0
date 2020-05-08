@@ -1,30 +1,42 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-
 import Layout from '~/components/Layout'
 import Pickups from '~/components/Pickups'
 import { getPickups } from '~/components/general/fetch'
 
-type HomeProps = Partial<{
-  pickupBook: React.FC
-  pickupGame: React.FC
-  pickupPhoto: React.FC
-}>
+type HomeProps = {
+  pickupBook: {
+    title: string
+    slug: string
+    coverUrl: string
+  } | null
+  pickupGame: {
+    id: string
+  } | null
+  pickupPhoto: {
+    permalink: string
+    media_url: string
+  } | null
+}
 
-const Home: React.FC<HomeProps> = ({ pickupBook, pickupGame, pickupPhoto }) => {
+const Home = ({ pickupBook, pickupGame, pickupPhoto }: HomeProps) => {
   return (
     <>
       <Layout>
-        <Pickups book={ pickupBook } game={ pickupGame } photo={ pickupPhoto } />
+        <Pickups book={pickupBook} game={pickupGame} photo={pickupPhoto} />
       </Layout>
     </>
   )
 }
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const props = await getPickups()
+export const getStaticProps: GetStaticProps = async () => {
+  const { pickupBook, pickupGame, pickupPhoto } = await getPickups()
   return {
-    props,
+    props: {
+      pickupBook,
+      pickupGame,
+      pickupPhoto,
+    },
   }
 }
 

@@ -1,10 +1,23 @@
+import { GetStaticProps } from 'next'
 import { NextSeo } from 'next-seo'
-
 import Layout from '~/components/Layout'
 import SingleBlog from '~/components/SingleBlog'
-import CheckHasPosts from '~/components/CheckHasPosts'
 import CategoryHeading from '~/components/elements/CategoryHeading'
-import { fetchEntries } from '~/components/general/fetch'
+import { getBlogEntries } from '~/components/general/fetch'
+
+type BlogProps = {
+  title: string
+  body: string
+  slug: string
+  date: {
+    publishedAt: Date
+    createdAt: Date
+  }
+  category: {
+    title: string
+    slug: string
+  }
+}
 
 const Blog = ({ posts }) => {
   return (
@@ -19,26 +32,22 @@ const Blog = ({ posts }) => {
           description="日々つれづれよもやまばなし"
           type="blog"
         />
-        <CheckHasPosts posts={posts}>
-          {posts.map((post) => (
-            <SingleBlog key={post.fields.slug} post={post} />
-          ))}
-        </CheckHasPosts>
+        {posts ? (
+          posts.map((post: BlogProps) => (
+            <SingleBlog key={post.slug} post={post} />
+          ))
+        ) : (
+          <p>記事がありません。</p>
+        )}
       </Layout>
     </>
   )
 }
 
-export async function getStaticProps({ params }) {
-  const posts = await fetchEntries({
-    content_type: 'blog',
-    'fields.category.sys.contentType.sys.id': 'blogCategory',
-    'fields.category.fields.slug': 'journal',
-  })
-
+export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
-      posts,
+      posts: await getBlogEntries('category', 'journal'),
     },
   }
 }
