@@ -1,4 +1,5 @@
 import axios from 'axios'
+import * as devFetch from '~/components/general/devFetch'
 
 /**
  * Contentful投稿取得
@@ -9,6 +10,11 @@ const client = require('contentful').createClient({
 })
 
 export async function fetchEntries(param: any) {
+  //TODO: developement時はキャッシュを見るようにしたい
+  // if (process.env.NODE_ENV !== 'production') {
+  //   return await devFetch.fetchEntries(param)
+  // }
+
   const entries = await client.getEntries(param)
   if (entries.items) return entries.items
   console.log(`Error getting Entries for ${entries.contentType.name}.`)
@@ -137,7 +143,7 @@ export async function getContentPaths(type: string, path: string) {
 }
 
 /**
- * Book Entries
+ * Blog Entries
  */
 export async function getBlogEntries(
   pageType: 'all' | 'single' | 'category' = 'all',
@@ -146,7 +152,7 @@ export async function getBlogEntries(
   const params = {
     // eslint-disable-next-line @typescript-eslint/camelcase
     content_type: 'blog',
-    order: '-sys.createdAt',
+    order: '-sys.createdAt', //TODO: この順序を厳密に, publishedDateがあればそちら優先
   }
 
   const appendParams = {
@@ -179,8 +185,8 @@ export async function getBlogEntries(
             createdAt: sys.createdAt,
           },
           category: {
-            title: category.fields.title,
-            slug: category.fields.slug,
+            title: category ? category.fields.title : null,
+            slug: category ? category.fields.slug : null,
           },
         }
       })
