@@ -71,7 +71,7 @@ const GamePanel = ({ data }: GamePanelProps) => {
           alt=""
         />
       </a>
-      <AllPostsLink text="All Games" path="/works/game" />
+      <AllPostsLink text="All Games" path="/works/games" />
     </>
   ) : (
     <NoData />

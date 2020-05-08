@@ -59,18 +59,22 @@ export const getStaticProps: GetStaticProps = async () => {
     maxResults: 50,
   })
 
-  videos = videos
-    ? videos.map((video: any) => {
-        return {
-          id: video.id.videoId,
-          snippet: {
-            title: video.snippet.title,
-            description: video.snippet.description,
-            publishedAt: video.snippet.publishedAt,
-          },
-        }
-      })
-    : null
+  if (videos != null) {
+    videos = videos.filter((video: any) => video.id.videoId != null)
+    videos = videos.map((video: any) => {
+      console.log(video)
+      return {
+        id: video.id.videoId ? video.id.videoId : null,
+        snippet: {
+          title: video.snippet.title,
+          description: video.snippet.description,
+          publishedAt: video.snippet.publishedAt,
+        },
+      }
+    })
+  } else {
+    videos = null
+  }
 
   return {
     props: {
