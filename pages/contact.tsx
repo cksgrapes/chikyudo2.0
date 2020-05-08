@@ -9,6 +9,7 @@ type FormItemProps = {
   label: string
   children: React.ReactNode
 }
+
 const FormItem = ({ label, children }: FormItemProps) => (
   <div className={styles.formParts}>
     <label>{label}</label>

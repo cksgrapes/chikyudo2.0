@@ -38,9 +38,7 @@ const PrivacyPolicy = () => (
       <h3>個人情報の追加・変更・訂正など</h3>
       <p>
         個人情報の追加・変更・訂正などをご希望される場合には、
-        <Link href="/contact">
-          <a>お問い合わせフォーム</a>
-        </Link>
+        <a href="mailto:masakichikashi@chikyudo.org">お問い合わせ</a>
         よりご連絡ください。ご本人であることを確認のうえ、速やかに対応させていただきます。
       </p>
       <h2>Cookieについて</h2>
@@ -77,9 +75,7 @@ const PrivacyPolicy = () => (
       </p>
       <p>
         もしも掲載情報に問題が見受けられた場合は、各権利所有者ご本人より運営者宛にご連絡ください。ご本人であることを確認のうえ、速やかに対応させていただきます。ご連絡は
-        <Link href="/contact">
-          <a>お問い合わせフォーム</a>
-        </Link>
+        <a href="mailto:masakichikashi@chikyudo.org">お問い合わせ</a>
         よりお願いいたします。
       </p>
       <h2>免責事項</h2>
@@ -96,9 +92,7 @@ const PrivacyPolicy = () => (
         サイトURL：<a href="https://chikyudo.org">https://chikyudo.org</a>
         <br />
         お問い合わせは
-        <Link href="/contact">
-          <a>こちらのフォーム</a>
-        </Link>
+        <a href="mailto:masakichikashi@chikyudo.org">こちら</a>
         よりお願いいたします。
       </p>
       <p>

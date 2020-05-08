@@ -22,13 +22,9 @@ type BlogProps = {
 const Blog = ({ posts }) => {
   return (
     <>
-      <NextSeo title="Blog - 千柩堂" description="しんしんと蓄積される" />
+      <NextSeo title="Blog - 千柩堂" description="ブログ" />
       <Layout>
-        <CategoryHeading
-          name="Blog"
-          description="しんしんと蓄積される"
-          type="blog"
-        />
+        <CategoryHeading name="Blog" description="ブログ" type="blog" />
         {posts ? (
           posts.map((post: BlogProps) => (
             <SingleBlog key={post.slug} post={post} />

@@ -26,7 +26,7 @@ const About = () => (
       </p>
       <p>
         おしごとのご相談は
-        <a href="https://chikyudo.org/contacts/">お問い合わせ</a>
+        <a href="mailto:masakichikashi@chikyudo.org">お問い合わせ</a>
         よりご連絡ください。
       </p>
     </Page>

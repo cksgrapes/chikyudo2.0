@@ -24,7 +24,7 @@ const getNavItems: { name: string; path: string }[] = [
   },
   {
     name: 'Contact',
-    path: '/contact',
+    path: 'mailto:masakichikashi@chikyudo.org',
   },
   {
     name: 'Privacy Policy',
