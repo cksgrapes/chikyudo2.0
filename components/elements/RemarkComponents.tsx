@@ -4,6 +4,15 @@ export const MyParagraph = ({ children }: any) => {
   //TODO:あとでソース整理
   let src = <p>{children}</p>
 
+  //画像時
+  if (
+    typeof children[0] !== 'string' &&
+    typeof children[0].type === 'function' &&
+    children[0].type.name === 'MyImg'
+  ) {
+    src = <figure>{children}</figure>
+  }
+
   if (children[0] === '[') {
     const shortcode: string = children.join('')
 
@@ -92,15 +101,6 @@ export const MyParagraph = ({ children }: any) => {
         </div>
       )
     }
-  }
-
-  //画像時
-  if (
-    typeof children[0] !== 'string' &&
-    typeof children[0].type === 'function' &&
-    children[0].type.name === 'MyImg'
-  ) {
-    src = <figure>{children}</figure>
   }
 
   return src
