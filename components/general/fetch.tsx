@@ -1,5 +1,5 @@
 import axios from 'axios'
-import * as devFetch from '~/components/general/devFetch'
+// import * as devFetch from '~/components/general/devFetch'
 
 /**
  * Contentful投稿取得
@@ -9,13 +9,26 @@ const client = require('contentful').createClient({
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 })
 
-export async function fetchEntries(param: any) {
+const previewClient = require('contentful').createClient({
+  space: process.env.CONTENTFUL_SPACE_ID,
+  accessToken: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+  host: 'preview.contentful.com',
+})
+
+export async function fetchEntries(param: any, previewMode = false) {
   //TODO: developement時はキャッシュを見るようにしたい
   // if (process.env.NODE_ENV !== 'production') {
   //   return await devFetch.fetchEntries(param)
   // }
 
-  const entries = await client.getEntries(param)
+  let entries: any
+
+  if (!previewMode) {
+    entries = await client.getEntries(param)
+  } else {
+    entries = await previewClient.getEntries(param)
+  }
+
   if (entries.items) return entries.items
   console.log(`Error getting Entries for ${entries.contentType.name}.`)
   return null
@@ -147,7 +160,8 @@ export async function getContentPaths(type: string, path: string) {
  */
 export async function getBlogEntries(
   pageType: 'all' | 'single' | 'category' = 'all',
-  slug?: string
+  slug?: string,
+  previewMode = false
 ) {
   const params = {
     // eslint-disable-next-line @typescript-eslint/camelcase
@@ -171,7 +185,7 @@ export async function getBlogEntries(
   }
   appendParams[pageType]()
 
-  let posts = await fetchEntries(params)
+  let posts = await fetchEntries(params, previewMode)
 
   posts = posts
     ? posts.map(({ sys, fields }: any) => {

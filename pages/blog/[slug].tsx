@@ -41,8 +41,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }: any) => {
-  const post = await getBlogEntries('single', params.slug)
+export const getStaticProps: GetStaticProps = async ({
+  params,
+  preview,
+}: any) => {
+  const post = await getBlogEntries('single', params.slug, preview)
   return {
     props: {
       post: post,
