@@ -1,5 +1,5 @@
 import axios from 'axios'
-import * as devFetch from '~/components/general/devFetch'
+// import * as devFetch from '~/components/general/devFetch'
 
 /**
  * Contentful投稿取得
@@ -11,7 +11,7 @@ const client = require('contentful').createClient({
 
 const previewClient = require('contentful').createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+  accessToken: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
   host: 'preview.contentful.com',
 })
 
