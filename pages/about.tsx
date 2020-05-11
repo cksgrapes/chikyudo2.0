@@ -1,11 +1,19 @@
 import { NextSeo } from 'next-seo'
 import Page from '~/components/Page'
+import SEO from '~/next-seo.config'
 
 const About = () => (
   <>
     <NextSeo
       title="About - 千柩堂"
       description="芸術たれ。クリエイター柾千樫およびゲーム実況者mercy、千柩堂についてのご紹介。"
+      openGraph={{
+        title: 'About - 千柩堂',
+        description:
+          '芸術たれ。クリエイター柾千樫およびゲーム実況者mercy、千柩堂についてのご紹介。',
+        type: 'article',
+        url: `${SEO.openGraph.url}about`,
+      }}
     />
     <Page heading="About" description="概要">
       <p>

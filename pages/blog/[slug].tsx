@@ -3,7 +3,7 @@ import { NextSeo } from 'next-seo'
 import Layout from '~/components/Layout'
 import SingleBlog from '~/components/SingleBlog'
 import { getContentPaths, getBlogEntries } from '~/components/general/fetch'
-import getMetaDesc from '~/components/general/getMetaDesc'
+import getMeta from '~/components/general/getMeta'
 
 type SingleBlogPostProps = {
   post: {
@@ -19,15 +19,18 @@ type SingleBlogPostProps = {
       title: string
       slug: string
     }
+    ogpImage: any
   }
 }
 
 const SingleBlogPost = ({ post }: SingleBlogPostProps) => {
+  const meta = getMeta(post, post.body)
   return (
     <>
       <NextSeo
-        title={`${post.title} - 千柩堂`}
-        description={getMetaDesc(post.metaDescription, post.body)}
+        title={meta.title}
+        description={meta.description}
+        openGraph={meta.openGraph}
       />
       <Layout>
         <SingleBlog post={post} isArchive={false} />

@@ -4,6 +4,7 @@ import Layout from '~/components/Layout'
 import SingleBlog from '~/components/SingleBlog'
 import CategoryHeading from '~/components/elements/CategoryHeading'
 import { getBlogEntries } from '~/components/general/fetch'
+import SEO from '~/next-seo.config'
 
 type BlogProps = {
   title: string
@@ -17,12 +18,22 @@ type BlogProps = {
     title: string
     slug: string
   }
+  ogpImage: any
 }
 
 const Blog = ({ posts }) => {
   return (
     <>
-      <NextSeo title="Tips - 千柩堂" description="Web制作やDTPなどの知識蔵" />
+      <NextSeo
+        title="Tips - 千柩堂"
+        description="Web制作やDTPなどの知識蔵"
+        openGraph={{
+          title: 'Tips - 千柩堂',
+          description: 'Web制作やDTPなどの知識蔵',
+          type: 'article',
+          url: `${SEO.openGraph.url}blog/tips`,
+        }}
+      />
       <Layout>
         <CategoryHeading
           name="Tips"

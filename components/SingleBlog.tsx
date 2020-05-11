@@ -52,6 +52,7 @@ type SingleBlogProps = {
       title: string
       slug: string
     }
+    ogpImage: any
   }
   isArchive?: boolean
 }

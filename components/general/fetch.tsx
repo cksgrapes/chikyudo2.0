@@ -202,6 +202,9 @@ export async function getBlogEntries(
             title: category ? category.fields.title : null,
             slug: category ? category.fields.slug : null,
           },
+          ogpImage: fields.ogpImage
+            ? `https:${fields.ogpImage.fields.file.url}`
+            : null,
         }
       })
     : null
@@ -270,6 +273,9 @@ export async function getBookEntries(isSingle = false, slug?: string) {
           sample: sample ? sample.fields.file.url : null,
           booth: fields.booth,
           metaDescription: fields.metaDescription,
+          ogpImage: fields.ogpImage
+            ? `https:${fields.ogpImage.fields.file.url}`
+            : null,
         }
       })
     : null

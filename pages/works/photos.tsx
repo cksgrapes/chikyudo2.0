@@ -3,6 +3,7 @@ import Layout from '~/components/Layout'
 import SinglePhoto from '~/components/SinglePhoto'
 import CategoryHeading from '~/components/elements/CategoryHeading'
 import { fetchPhotos } from '~/components/general/fetch'
+import SEO from '~/next-seo.config'
 
 type PhotoProps = {
   posts: {
@@ -19,7 +20,16 @@ const Photos = ({ posts }: PhotoProps) => {
   if (posts == null) return null
   return (
     <>
-      <NextSeo title="Photos - 千柩堂" description="さまざまの景色" />
+      <NextSeo
+        title="Photos - 千柩堂"
+        description="さまざまの景色"
+        openGraph={{
+          title: 'Photos - 千柩堂',
+          description: 'さまざまの景色',
+          type: 'article',
+          url: `${SEO.openGraph.url}works/photos`,
+        }}
+      />
       <Layout>
         <CategoryHeading
           name="Photos"

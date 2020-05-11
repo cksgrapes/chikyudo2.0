@@ -4,7 +4,7 @@ import { NextSeo } from 'next-seo'
 import Layout from '~/components/Layout'
 import SingleBook from '~/components/SingleBook'
 import { getBookEntries, getContentPaths } from '~/components/general/fetch'
-import getMetaDesc from '~/components/general/getMetaDesc'
+import getMeta from '~/components/general/getMeta'
 
 type SingleBookPostProps = {
   post: {
@@ -25,15 +25,22 @@ type SingleBookPostProps = {
     sample: string
     booth: string
     metaDescription: string
+    ogpImage: string
   }
 }
 
 const SingleBookPost = ({ post }: SingleBookPostProps) => {
+  if (post.ogpImage == null) {
+    post.ogpImage = `https:${post.coverimage[0].fileUrl}`
+  }
+
+  const meta = getMeta(post, post.intro)
   return (
     <>
       <NextSeo
-        title={`${post.title} - 千柩堂`}
-        description={getMetaDesc(post.metaDescription, post.intro)}
+        title={meta.title}
+        description={meta.description}
+        openGraph={meta.openGraph}
       />
       <Layout>
         <SingleBook post={post} />

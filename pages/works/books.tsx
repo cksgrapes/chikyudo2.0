@@ -4,6 +4,7 @@ import Layout from '~/components/Layout'
 import SingleBook from '~/components/SingleBook'
 import CategoryHeading from '~/components/elements/CategoryHeading'
 import { getBookEntries } from '~/components/general/fetch'
+import SEO from '~/next-seo.config'
 
 type BlogProps = {
   posts: {
@@ -29,7 +30,16 @@ type BlogProps = {
 const Blog = ({ posts }: BlogProps) => {
   return (
     <>
-      <NextSeo title="Books - 千柩堂" />
+      <NextSeo
+        title="Books - 千柩堂"
+        description="出版物"
+        openGraph={{
+          title: 'Books - 千柩堂',
+          description: '出版物',
+          type: 'article',
+          url: `${SEO.openGraph.url}works/books`,
+        }}
+      />
       <Layout>
         <CategoryHeading name="Books" description="出版物" type="works" />
         {posts

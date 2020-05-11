@@ -5,6 +5,7 @@ import SingleGame from '~/components/SingleGame'
 import CategoryHeading from '~/components/elements/CategoryHeading'
 import NoData from '~/components/elements/NoData'
 import { fetchVideos } from '~/components/general/fetch'
+import SEO from '~/next-seo.config'
 
 type GamesProps = {
   videos: {
@@ -23,6 +24,12 @@ const Games = ({ videos }: GamesProps) => {
       <NextSeo
         title="Games - 千柩堂"
         description="柾千樫ことmercyが送るおだやかなるゲーム実況"
+        openGraph={{
+          title: 'Games - 千柩堂',
+          description: '柾千樫ことmercyが送るおだやかなるゲーム実況',
+          type: 'article',
+          url: `${SEO.openGraph.url}works/games`,
+        }}
       />
       <Layout>
         <CategoryHeading name="Games" description="ゲーム実況" type="works" />
