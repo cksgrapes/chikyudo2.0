@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/camelcase */
 const seoConfig = {
   title: '千柩堂',
   description: '柾千樫 / mercy オフィシャルサイト『千柩堂』',
-  canonical: 'https://chikyudo.org/',
+  canonical: 'https://chikyudo.xyz/',
   openGraph: {
-    type: 'article',
+    type: 'website',
     locale: 'ja_JP',
-    url: 'https://chikyudo.org/',
+    url: 'https://chikyudo.xyz/',
     site_name: '千柩堂',
     images: [
       {
-        url: 'https://chikyudo.org/assets/images/ogp.jpg',
+        url: 'https://chikyudo.xyz/assets/images/ogp.jpg',
       },
     ],
   },

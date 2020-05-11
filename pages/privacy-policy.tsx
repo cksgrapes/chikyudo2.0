@@ -1,17 +1,24 @@
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import Page from '~/components/Page'
+import SEO from '~/next-seo.config'
 
 const PrivacyPolicy = () => (
   <>
     <NextSeo
       title="Privacy Policy - 千柩堂"
       description="プライバシーポリシー"
+      openGraph={{
+        title: 'Privacy Policy - 千柩堂',
+        description: 'プライバシーポリシー',
+        type: 'article',
+        url: `${SEO.openGraph.url}privacy-policy`,
+      }}
     />
     <Page heading="Privacy Policy" description="個人情報保護方針">
       <p>
         本プライバシー・ポリシーは、千柩堂（
-        <a href="https://chikyudo.org">https://chikyudo.org</a>{' '}
+        <a href="https://chikyudo.xyz">https://chikyudo.xyz</a>{' '}
         以下、「当サイト」といいます。）の各種サービスにおいて、当サイトの訪問者（以下「訪問者」といいます。）の個人情報もしくはそれに準ずる情報を取り扱う際に、当サイトが遵守する方針を示したものです。
       </p>
       <h2>基本方針</h2>
@@ -89,7 +96,7 @@ const PrivacyPolicy = () => (
       <p>
         運営者：柾千樫
         <br />
-        サイトURL：<a href="https://chikyudo.org">https://chikyudo.org</a>
+        サイトURL：<a href="https://chikyudo.xyz">https://chikyudo.xyz</a>
         <br />
         お問い合わせは
         <a href="mailto:masakichikashi@chikyudo.org">こちら</a>

@@ -5,6 +5,7 @@ import Layout from '~/components/Layout'
 import Pickups from '~/components/Pickups'
 import CategoryHeading from '~/components/elements/CategoryHeading'
 import { getPickups } from '~/components/general/fetch'
+import SEO from '~/next-seo.config'
 
 type WorksProps = {
   pickupBook: {
@@ -24,7 +25,16 @@ type WorksProps = {
 const Works = ({ pickupBook, pickupGame, pickupPhoto }: WorksProps) => {
   return (
     <>
-      <NextSeo title="Works - 千柩堂" />
+      <NextSeo
+        title="Works - 千柩堂"
+        description="作品"
+        openGraph={{
+          title: 'Works - 千柩堂',
+          description: '作品',
+          type: 'article',
+          url: `${SEO.openGraph.url}works`,
+        }}
+      />
       <Layout>
         <CategoryHeading name="Works" description="作品" type="works" />
         <Pickups book={pickupBook} game={pickupGame} photo={pickupPhoto} page />

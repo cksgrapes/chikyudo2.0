@@ -17,6 +17,7 @@ type BlogProps = {
     title: string
     slug: string
   }
+  ogpImage: any
 }
 
 const Blog = ({ posts }) => {
